@@ -1,0 +1,13 @@
+{
+    "pages": [
+        "pages/recycle/recycle",
+        "pages/index/index",
+        "pages/logs/logs"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#1581D9",
+        "navigationBarTitleText": "购书云管家",
+        "navigationBarTextStyle": "white"
+    }
+}
