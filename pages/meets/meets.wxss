@@ -1,0 +1,56 @@
+#store_scho{
+    background-color: #1581D9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 13px;
+    height: 42px;
+
+    padding: 0 16px;
+}
+
+#store_scho .icon{
+    width: 14px;
+    height: 14px;
+    position: relative;
+    top: 2px;
+}
+#store_scho .label{
+    padding: 0 6px;
+}
+
+/* 预约类型选择 */
+#meet_type{
+    padding: 12px 0 12px 16px;
+    font-size: 13px;
+    line-height: 26px;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.order_way{
+    box-sizing: border-box;
+    border-right: 1px solid #E0E0E0;
+    padding-right: 8px;
+}
+
+.order_way .icon{
+    width: 14px;
+    height: 14px;
+    position: relative;
+    top: 2px;
+}
+
+.meet_types{
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+    color: #888;
+    line-height: 26px;
+}
+.meet_types .active{
+    color: #333;
+    border-bottom: 2px solid #1581D9;
+}
