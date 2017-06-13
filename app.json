@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/setting/setting",
         "pages/meets/meets",
         "pages/login/login",
         "pages/recycle/recycle",

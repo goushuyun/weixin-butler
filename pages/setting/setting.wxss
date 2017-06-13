@@ -1,0 +1,64 @@
+view.wraper{
+    background-color: white;
+    margin-bottom: 8px;
+}
+
+view.header{
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    line-height: 42px;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+view.header .title{
+    font-size: 15px;
+    font-weight: bolder;
+    color: #333;
+}
+view.header .remark{
+    color: #555;
+    font-size: 13px;
+}
+view.header .active{
+    font-size: 13px;
+    color: #217AC0;
+}
+
+
+view.content{
+    padding: 12px 16px;
+}
+view.content .code{
+    width: 220px;
+    height: 220px;
+}
+
+
+/* 预约时间 */
+.day_content{
+    padding: 12px 0 12px 16px;
+}
+view.day_content .day{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    font-size: 14px;
+    line-height: 42px;
+    border-bottom: 1px dotted #E8E8E8;
+
+}
+
+view.day_content .day .time{
+    padding-left: 32px;
+    display: flex;
+
+}
+view.day_content .day checkbox{
+    padding-right: 8px;
+}
+view.day_content .day picker{
+    text-align: center;
+    padding: 0 12px;
+}

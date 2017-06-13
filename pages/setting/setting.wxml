@@ -1,0 +1,51 @@
+<!-- 收书码 -->
+<view class="wraper">
+    <view class="header">
+        <text class="title">收书码</text>
+        <text class="remark">快将收书码分享给用户吧</text>
+    </view>
+
+    <view class="content">
+        <image class="code" src="http://image.cumpusbox.com//shop/logo/goushubao.jpeg"></image>
+    </view>
+</view>
+
+<!-- 收书时间 -->
+<view class="wraper">
+    <view class="header">
+        <text class="title">预约时间</text>
+        <text class="active">修改</text>
+    </view>
+
+    <view class="day_content">
+
+        <view class="day">
+            <view class="week">
+                <checkbox value="asdf" checked="true" color="#66C549"/>
+                <label>周一</label>
+            </view>
+            <view class="time">
+                <picker mode="time" start="09:01" end="21:01" >
+                    00:00
+                </picker>
+                <text style="padding: 0 6px;">~</text>
+                <picker mode="time" start="09:01" end="21:01" >
+                    24:00
+                </picker>
+            </view>
+        </view>
+
+    </view>
+</view>
+
+
+<!-- 收书公告 -->
+<view class="wraper">
+    <view class="header">
+        <text class="title">收书公告</text>
+        <text class="active">修改</text>
+    </view>
+    <view class="content">
+        <textarea disabled placeholder-style="font-size: 13px;" value="asdfasdfasdf" placeholder="公告给每一个卖书的人 ..." />
+    </view>
+</view>
