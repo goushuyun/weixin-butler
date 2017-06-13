@@ -1,0 +1,30 @@
+<view class="store">
+    <image class="store_logo" src="http://image.goushuyun.cn/logo_share.png"></image>
+    <view class="name_id">
+        <text class="store_name">购书云体验店</text>
+        <text class="store_id">1211000727</text>
+    </view>
+    <view class="end_at">
+        <text>到期时间：2017-12-24</text>
+    </view>
+</view>
+<view class="store">
+    <image class="store_logo" src="http://image.goushuyun.cn/logo_share.png"></image>
+    <view class="name_id">
+        <text class="store_name">购书云体验店</text>
+        <text class="store_id">1211000727</text>
+    </view>
+    <view class="end_at">
+        <text>到期时间：2017-12-24</text>
+    </view>
+</view>
+<view class="store">
+    <image class="store_logo" src="http://image.goushuyun.cn/logo_share.png"></image>
+    <view class="name_id">
+        <text class="store_name">购书云体验店</text>
+        <text class="store_id">1211000727</text>
+    </view>
+    <view class="end_at">
+        <text>到期时间：2017-12-24</text>
+    </view>
+</view>
