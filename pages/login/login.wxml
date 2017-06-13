@@ -1,0 +1,14 @@
+<view id="view_container">
+
+    <view id="login_box">
+        <image class="logo" src="http://image.goushuyun.cn/logo_share.png"></image>
+
+        <view class="fields">
+            <input placeholder="手机号码" type="number"></input>
+            <input placeholder="密码" password></input>
+        </view>
+
+        <button type="primary" disabled="false">登录</button>
+    </view>
+
+</view>
