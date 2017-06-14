@@ -1,8 +1,8 @@
 {
     "pages": [
+        "pages/meets/meets",
         "pages/stores/stores",
         "pages/setting/setting",
-        "pages/meets/meets",
         "pages/login/login",
         "pages/recycle/recycle",
         "pages/index/index",
