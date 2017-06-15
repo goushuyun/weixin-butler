@@ -1,5 +1,5 @@
 /**app.wxss**/
-
+@import "common/butler.wxss";
 #view_container {
     height: 100%;
     display: flex;

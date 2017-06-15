@@ -1,6 +1,10 @@
 {
     "pages": [
         "pages/welcome/welcome",
+        "pages/reservation/reservation",
+        "pages/explanation/explanation",
+        "pages/school_list/school_list",
+        "pages/school_add/school_add",
         "pages/meets/meets",
         "pages/stores/stores",
         "pages/setting/setting",

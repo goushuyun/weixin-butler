@@ -1,0 +1,43 @@
+.remark{
+    background-color: white;
+    padding: 6px 16px 10px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+}
+textarea{
+    box-sizing: border-box;
+    height: 750rpx;
+    width: 100%;
+    border: 1px solid #f4f3f3;
+    border-radius: 4px;
+    padding: 16px 12px;
+    background-color: #EFF3F7;
+}
+.item {
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  height: 44px;
+  padding: 0 15px;
+}
+.desp {
+  margin-left: 10px;
+  flex-grow: 0;
+}
+.footer {
+  display: flex;
+  align-items: center;
+}
+.cancel {
+  width: 50%;
+  height: 44px;
+  border-radius: 0;
+  background-color: #2BAF2B;
+  color: #FFFFFF;
+}
+.confirm {
+  width: 50%;
+  height: 44px;
+  border-radius: 0;
+  background-color: #1581D9;
+  color: #FFFFFF;
+}
