@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/order/order",
         "pages/welcome/welcome",
         "pages/setting/setting",
         "pages/reservation/reservation",
