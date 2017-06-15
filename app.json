@@ -1,5 +1,9 @@
 {
     "pages": [
+        "pages/reservation/reservation",
+        "pages/explanation/explanation",
+        "pages/school_list/school_list",
+        "pages/school_add/school_add",
         "pages/stores/stores",
         "pages/setting/setting",
         "pages/meets/meets",

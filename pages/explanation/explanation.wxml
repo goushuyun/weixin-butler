@@ -1,0 +1,14 @@
+<view class="body">
+  <form bindsubmit="formSubmit">
+    <view class="item" style="padding-top: 10px;">
+      <view class="desp">收书说明</view>
+    </view>
+    <view class="remark">
+        <textarea name="remark" maxlength="50" placeholder="请输入收书说明" value="{{remark}}"/>
+    </view>
+    <view class="footer">
+      <button class="cancel" formType="reset">取消</button>
+      <button class="confirm" formType="submit">保存</button>
+    </view>
+  </form>
+</view>

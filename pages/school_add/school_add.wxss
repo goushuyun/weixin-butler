@@ -1,0 +1,47 @@
+.item {
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  height: 44px;
+  line-height: 44px;
+  padding: 0 15px;
+}
+.desp {
+  margin-right: 10px;
+  flex-grow: 0;
+}
+.value {
+  flex-grow: 1;
+}
+input{
+  box-sizing: border-box;
+  width: 100%;
+  height: 32px;
+  border: 1px solid #E0E0E0;
+  text-align: left;
+  padding: 0 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.footer {
+  display: flex;
+  align-items: center;
+}
+.cancel {
+  width: 50%;
+  height: 44px;
+  border-radius: 0;
+  background-color: #2BAF2B;
+  color: #FFFFFF;
+}
+.confirm {
+  width: 50%;
+  height: 44px;
+  border-radius: 0;
+  background-color: #1581D9;
+  color: #FFFFFF;
+}
+.form {
+  background-color: #FFFFFF;
+  padding: 8px 0;
+}

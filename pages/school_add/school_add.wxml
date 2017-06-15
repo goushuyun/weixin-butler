@@ -1,0 +1,23 @@
+<view class="body">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="form">
+      <view class="item">
+        <view class="desp">学校名称</view>
+        <view class="value"><input name="school" value="{{location.name}}" placeholder="点击选择学校" bindfocus="choAddress"/></view>
+      </view>
+      <view class="item">
+        <view class="desp">客服电话</view>
+        <view class="value"><input name="tel" type="number" placeholder="手机号或者电话号"/></view>
+      </view>
+      <view class="item">
+        <view class="desp">配送费用</view>
+        <view class="value"><input name="express_fee" type="digit" placeholder="单位：元"/></view>
+      </view>
+      <map longitude="{{location.longitude}}" latitude="{{location.latitude}}" markers="{{markers}}"  style="width: 100%; height: 300px;"></map>
+      <view class="footer">
+        <button class="cancel" formType="reset">取消</button>
+        <button class="confirm" formType="submit">保存</button>
+      </view>
+    </view>
+  </form>
+</view>
