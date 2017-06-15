@@ -1,0 +1,46 @@
+/* 包裹框 */
+view.wraper{
+    background-color: white;
+    margin-bottom: 8px;
+}
+view.wraper view.header{
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    line-height: 40px;
+    border-bottom: 1px solid #E8E8E8;
+}
+view.wraper view.header .title{
+    font-size: 15px;
+    font-weight: bolder;
+    color: #333;
+}
+view.wraper view.content{
+    padding: 12px 16px;
+}
+view.wraper view.content .notice{
+    font-size: 14px;
+    color: #555;
+}
+
+/* recycle scope */
+view.school_list{
+    display: flex;
+    flex-direction: column;
+}
+
+view.school_list .school{
+    font-size: 14px;
+    color: #555;
+    line-height: 21px;
+}
+
+/*预约收书按钮*/
+view.to_meet{
+    text-align: center;
+    position: fixed;
+    bottom: 6px;
+    width: 100%;
+    padding: 0 6px;
+    box-sizing: border-box;
+}
