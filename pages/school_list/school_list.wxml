@@ -1,10 +1,12 @@
 <view class="body">
-  <view class="item" style="padding-top: 10px;">
-    <view class="desp">请勾选收书学校</view>
-  </view>
-  <view class="item" wx:for="{{schools}}">
-    <checkbox value="{{item.id}}" checked="{{item.checked}}"/>
-    <view class="desp">{{item.value}}</view>
+  <view class="area">
+    <view class="item">
+      <view>请勾选收书学校</view>
+    </view>
+    <view class="item" wx:for="{{schools}}">
+      <checkbox value="{{item.id}}" checked="{{item.checked}}"/>
+      <view class="desp">{{item.value}}</view>
+    </view>
   </view>
   <view class="add_btn" bindtap="goToSchoolAdd">+ 添加学校</view>
   <view class="footer">

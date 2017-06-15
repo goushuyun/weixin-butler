@@ -1,31 +1,16 @@
-.item {
-  display: flex;
-  align-items: center;
-  background-color: #FFFFFF;
-  height: 44px;
-  padding: 0 15px;
-}
 .desp {
-  margin-left: 10px;
-  flex-grow: 0;
+  margin: 0 20px;
 }
-.footer {
-  display: flex;
-  align-items: center;
-}
-.cancel {
-  width: 50%;
-  height: 44px;
-  border-radius: 0;
-  background-color: #2BAF2B;
-  color: #FFFFFF;
-}
-.confirm {
-  width: 50%;
-  height: 44px;
-  border-radius: 0;
-  background-color: #1581D9;
-  color: #FFFFFF;
+.picker {
+  margin: 0 10px;
+  box-sizing: border-box;
+  height: 32px;
+  line-height: 32px;
+  border: 1px solid #E0E0E0;
+  text-align: left;
+  padding: 0 10px;
+  border-radius: 10px;
+  font-size: 14px;
 }
 .add_btn {
   margin-top: 10px;
