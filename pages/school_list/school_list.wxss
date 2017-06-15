@@ -1,31 +1,5 @@
-.item {
-  display: flex;
-  align-items: center;
-  background-color: #FFFFFF;
-  height: 44px;
-  padding: 0 15px;
-}
 .desp {
   margin-left: 10px;
-  flex-grow: 0;
-}
-.footer {
-  display: flex;
-  align-items: center;
-}
-.cancel {
-  width: 50%;
-  height: 44px;
-  border-radius: 0;
-  background-color: #2BAF2B;
-  color: #FFFFFF;
-}
-.confirm {
-  width: 50%;
-  height: 44px;
-  border-radius: 0;
-  background-color: #1581D9;
-  color: #FFFFFF;
 }
 .add_btn {
   margin-top: 10px;
