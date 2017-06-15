@@ -44,3 +44,139 @@ view.to_meet{
     padding: 0 6px;
     box-sizing: border-box;
 }
+
+/* 预约 */
+.meet_item{
+    border-bottom: 1px solid #F6F6F6;
+    padding: 8px 16px;
+    background-color: white;
+    display: flex;
+}
+.meet_item .avatar{
+    width: 38px;
+    min-width: 38px;
+    height: 38px;
+    border: 1px solid #F6F6F6;
+    border-radius: 2px;
+}
+
+.meet_item .meet_content {
+    flex-grow: 1;
+    padding-left: 8px;
+}
+.meet_item .meet_content .remark {
+    font-size: 14px;
+    color: #333;
+    line-height: 16px;
+}
+
+/* 图片 */
+.imgs_list{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+.img_item{
+    width: 72px;
+    height: 72px;
+    padding-right: 4px;
+}
+
+/*基本三要素信息*/
+.base_info{
+
+}
+.base_info_item{
+    font-size: 13px;
+    color: #666;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.dot{
+    width: 12px;
+    height: 12px;
+}
+
+/*操作栏*/
+.operate{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.operate .moment{
+    font-size: 12px;
+    color: #888;
+}
+
+.btns{
+    line-height: 24px;
+    display: flex;
+}
+.btns .button{
+    border-radius: 999999px;
+    padding: 1px 10px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button image{
+    width: 14px;
+    height: 14px;
+}
+
+text.btn{
+    font-size: 12px;
+}
+.re_delay{
+    border: 1px solid  #FF4949;
+    color: #FF4949;
+}
+
+.complete{
+    border: 1px solid  #20A0FF;
+    color: #20A0FF;
+}
+
+
+
+/* 信息块展示 */
+.info_block{
+    margin: 4px 0;
+    font-size: 14px;
+    background-color: white;
+    color: #555;
+}
+
+/* 基本信息填写 */
+.info_block label {
+    padding-right: 16px;
+}
+
+view.info_item{
+    line-height: 44px;
+    border-bottom: 1px solid #F6F6F6;
+    padding: 0 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+view.info_item .item_content{
+    flex-grow: 1;
+
+}
+
+/* 信息标题 */
+view.title{
+    color: black;
+    font-size: 13px;
+    line-height: 38px;
+    padding-left: 16px;
+    border-bottom: 1px solid #F6F6F6;
+    font-weight: bold;
+}

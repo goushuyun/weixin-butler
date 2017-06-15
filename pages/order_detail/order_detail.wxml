@@ -1,0 +1,25 @@
+<import src="../../template/meet.wxml"/>
+
+<!-- detail -->
+<view>
+    <!-- 预约内容展示 -->
+    <template is="meet"/>
+
+    <!-- 追加信息 -->
+    <view class="info_block">
+        <view class="title">商家信息</view>
+        <view class="info_item">
+            <label>商户名称</label>
+            <text class="item_content">购书云体验店</text>
+        </view>
+        <view class="info_item">
+            <label>商家电话</label>
+            <text class="item_content" style="color:#1581D9;">18817953402</text>
+        </view>
+    </view>
+
+    <!-- 按钮 -->
+    <view class="btn">
+        <button type="primary">创建新预约</button>
+    </view>
+</view>

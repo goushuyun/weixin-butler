@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/order_detail/order_detail",
         "pages/order/order",
         "pages/welcome/welcome",
         "pages/setting/setting",

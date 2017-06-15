@@ -1,0 +1,10 @@
+@import "../../common/common.wxss";
+
+.info_block{
+    margin: 12px 0;
+}
+
+view.btn{
+    margin-top: 12px;
+    padding: 8px;
+}
