@@ -1,14 +1,47 @@
-<view id="view_container">
-
-    <view id="login_box">
-        <image class="logo" src="http://image.goushuyun.cn/logo_share.png"></image>
-
-        <view class="fields">
-            <input placeholder="手机号码" type="number"></input>
-            <input placeholder="密码" password></input>
-        </view>
-
-        <button type="primary" disabled="false">登录</button>
+<view class="body">
+    <view class="logo_area">
+      <image class="logo" src="http://image.goushuyun.cn/logo_share.png"></image>
     </view>
-
+    <view class="tabs" >
+      <view class="tab {{currentPage == index ? 'currentTab': ''}}" wx:for="{{tabs}}" bindtap="goToPage" data-index="{{index}}" wx:key="*this">{{item}}</view>
+    </view>
+    <form wx:if="{{currentPage == 1}}" id="sign_up" bindsubmit="signUp">
+      <view class="item">
+        <input name="mobile" type="number" placeholder="手机号码" bindinput="inputMobile"/>
+      </view>
+      <view class="item">
+        <input name="message_code" type="number" placeholder="短信验证码"/>
+        <button class="message_btn" disabled="{{registe_timer_disabled}}" bindtap="getMessageCode('register')">{{registe_timer_disabled ? (register_timer_second + 's') : '获取验证码'}}</button>
+      </view>
+      <view class="item">
+        <input name="password" placeholder="姓名"/>
+      </view>
+      <view class="item">
+        <input name="password" password placeholder="设置密码"/>
+      </view>
+      <view class="item">
+        <button class="submit_btn" formType="submit">注册</button>
+      </view>
+    </form>
+    <form wx:else id="sign_in" bindsubmit="signIn">
+      <view class="item">
+        <input name="mobile" type="number" placeholder="手机号码" bindinput="inputMobile"/>
+      </view>
+      <view wx:if="{{!forgetPwd}}" class="item">
+        <input name="password" password placeholder="登录密码"/>
+      </view>
+      <view wx:if="{{forgetPwd}}" class="item">
+        <input name="message_code" type="number" placeholder="短信验证码"/>
+        <button class="message_btn" disabled="{{update_pwd_timer_disabled}}" bindtap="getMessageCode('update_pwd')">{{update_pwd_timer_disabled ? (update_pwd_timer_second + 's') : '获取验证码'}}</button>
+      </view>
+      <view wx:if="{{forgetPwd}}" class="item">
+        <input name="password" password placeholder="新密码"/>
+      </view>
+      <view class="item">
+        <button class="submit_btn" formType="submit">登录</button>
+      </view>
+      <view class="item">
+        <view class="forget_btn" bindtap="forgetBtn">{{forgetPwd ? '密码登录' : '忘记密码？'}}</view>
+      </view>
+    </form>
 </view>

@@ -2,6 +2,7 @@
     "pages": [
         "pages/order_detail/order_detail",
         "pages/order/order",
+        "pages/login/login",
         "pages/welcome/welcome",
         "pages/setting/setting",
         "pages/reservation/reservation",
@@ -10,7 +11,6 @@
         "pages/school_add/school_add",
         "pages/meets/meets",
         "pages/stores/stores",
-        "pages/login/login",
         "pages/recycle/recycle",
         "pages/index/index",
         "pages/logs/logs"

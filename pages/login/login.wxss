@@ -1,45 +1,78 @@
-#view_container{
-    padding-left: 16px;
-    padding-right: 16px;
+.body {
+  background-color: #FFFFFF;
 }
-
-view#login_box{
-    text-align: center;
-    width: 100%;
-    padding: 16px 0;
+.logo_area {
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
 }
-
-image.logo{
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    margin-bottom: 32px;
-    box-shadow: 1px 1px 3px 1px #E0E0E0;
+.logo{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 3px 1px #E0E0E0;
 }
-
-view.fields{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 16px;
+.tabs{
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+.tab{
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
+  width: 70px;
+  color: #97B0D5;
+  box-sizing: border-box;
+  border-bottom: 1px solid #D1DBE5;
+}
+.currentTab{
+  color: #20A0FF;
+  border-bottom: 3px solid #20A0FF;
+}
+.item {
+  justify-content: center;
+  padding: 0;
 }
 
 input{
-    box-sizing: border-box;
-    width: 280px;
-    height: 36px;
-    border: 1px solid #E0E0E0;
-    text-align: left;
-    padding: 6px 16px;
-    font-size: 13px;
-    border-radius: 4px;
-    margin-bottom: 12px;
+  box-sizing: border-box;
+  width: 80%;
+  height: 32px;
+  border: 1px solid #E0E0E0;
+  text-align: left;
+  padding: 0px 10px;
+  font-size: 14px;
+  border-radius: 4px;
 }
-
-button{
-    box-sizing: border-box;
-    width: 280px;
-    height: 36px;
-    font-size: 14px;
-    line-height: 36px;
+.message_btn {
+  box-sizing: border-box;
+  height: 32px;
+  line-height: 32px;
+  font-size: 14px;
+  width: 100px;
+  position: absolute;
+  right: 10%;
+  background-color: #20A0FF;
+  color: #FFFFFF;
+}
+.submit_btn {
+  box-sizing: border-box;
+  height: 32px;
+  line-height: 32px;
+  font-size: 14px;
+  width: 80%;
+  background-color: #20A0FF;
+  color: #FFFFFF;
+}
+.forget_btn {
+  box-sizing: border-box;
+  height: 32px;
+  line-height: 32px;
+  font-size: 14px;
+  width: 80%;
+  color: #20A0FF;
+  text-align: left;
+  padding-left: 10px;
 }

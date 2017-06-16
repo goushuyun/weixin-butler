@@ -26,5 +26,6 @@ App({
 	},
 	globalData: {
 		userInfo: null
-	}
+	},
+	base_url: 'https://admin.goushuyun.cn'
 })

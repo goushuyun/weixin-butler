@@ -47,7 +47,6 @@
 .item {
   display: flex;
   align-items: center;
-  background-color: #FFFFFF;
   height: 44px;
   padding: 0 15px;
 }
@@ -77,4 +76,8 @@
   border-radius: 0;
   background-color: #1581D9;
   color: #FFFFFF;
+}
+.error {
+  border: 1px solid #FF4949;
+  color: #FF4949;
 }
