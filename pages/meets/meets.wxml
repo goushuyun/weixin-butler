@@ -77,3 +77,18 @@
     </scroll-view>
 
 </view>
+
+<view class="footer">
+  <view class="meets">
+    <view>
+      <image src="/images/home_selected.png"></image>
+      <view class="text" style="color:#1581D9">首页</view>
+    </view>
+  </view>
+  <view class="setting" bindtap="goToSetting">
+    <view>
+      <image src="/images/setting.png"></image>
+      <view class="text" style="color:#888888">设置</view>
+    </view>
+  </view>
+</view>

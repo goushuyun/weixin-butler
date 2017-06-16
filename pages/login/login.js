@@ -10,7 +10,15 @@ Page({
     update_pwd_timer_second: 60,
     update_pwd_timer_disabled: false,
 
-    mobile: ''
+    mobile: '18817953402',
+    password: '12345678',
+    validate: {
+      message: '',
+      mobile: false,
+      message_code: false,
+      password: false,
+      username: false
+    }
   },
   goToPage(e) {
     this.setData({
@@ -23,10 +31,17 @@ Page({
       forgetPwd
     })
   },
+  inputMobile(e) {
+    this.setData({
+      mobile: e.detail.value
+    })
+  },
   signIn(e) {
     var self = this
-    var formData = e.detail.value
-    console.log(formData);
+    var formData = e.detail.value ? e.detail.value : e
+    if (!self.checkSignData(formData)) {
+      return
+    }
     if (self.data.forgetPwd) {
       wx.request({
         url: app.base_url + '/v1/seller/update_password',
@@ -42,6 +57,7 @@ Page({
               title: '密码已更改',
               icon: 'success'
             })
+            self.login(formData)
             self.setData({
               forgetPwd: false
             })
@@ -54,7 +70,11 @@ Page({
           }
         }
       })
+    } else {
+      self.login(formData)
     }
+  },
+  login(formData) {
     wx.request({
       url: app.base_url + '/v1/seller/login',
       method: 'POST',
@@ -65,11 +85,10 @@ Page({
       success(res) {
         if (res.data.message == 'ok') {
           wx.setStorageSync('token', res.data.data.token)
-          wx.showToast({
-            title: '登录成功',
-            icon: 'success'
+          wx.redirectTo({
+            url: '/pages/stores/stores'
           })
-        } else if (resp.data.message == 'notFound') {
+        } else if (res.data.message == 'notFound') {
           wx.showToast({
             title: '用户名或密码错误',
             icon: 'loading'
@@ -81,6 +100,9 @@ Page({
   signUp(e) {
     var self = this
     var formData = e.detail.value
+    if (self.checkSignData(formData)) {
+      return
+    }
     wx.request({
       url: app.base_url + '/v1/seller/register',
       method: 'POST',
@@ -91,14 +113,17 @@ Page({
         username: formData.username
       },
       success(res) {
-        if (resp.data.message == 'ok') {
-          this.signIn(formName)
-        } else if (resp.data.message == 'exist') {
+        if (res.data.message == 'ok') {
+          self.login(formData)
+        } else if (res.data.message == 'exist') {
           wx.showToast({
             title: '用户名已存在',
             icon: 'loading'
           })
-        } else if (resp.data.message == 'codeErr') {
+          self.setData({
+            currentPage: 0
+          })
+        } else if (res.data.message == 'codeErr') {
           wx.showToast({
             title: '验证码错误',
             icon: 'loading'
@@ -108,31 +133,103 @@ Page({
     })
   },
   checkSignData(formData) {
-    var result = {
-      message: 'ok',
-      valid: false
-    }
-    if (!formData.mobile) {
-      result.message = '手机号码不能为空'
-    }
+    var valid = true
+
     let telReg = /^1\d{10}$/
-    if (!telReg.test(value)) {
-      result.message = '请输正确的手机号码'
-    } else {
-      result.valid = true
+    if (!telReg.test(formData.mobile)) {
+      valid = false
+      this.setData({
+        validate: {
+          message: '请输正确的手机号码',
+          mobile: true,
+          message_code: false,
+          password: false,
+          username: false
+        }
+      })
+      return valid
     }
-    return result
+
+    if (formData.message_code != undefined) {
+      let msgCodeReg = /\d{4}/
+      if (!msgCodeReg.test(formData.message_code)) {
+        valid = false
+        this.setData({
+          validate: {
+            message: '验证码格式不正确',
+            mobile: false,
+            message_code: true,
+            password: false,
+            username: false
+          }
+        })
+        return valid
+      }
+    }
+
+    let pwdReg = /^[A-Za-z0-9]{6,20}$/
+    if (!pwdReg.test(formData.password)) {
+      valid = false
+      this.setData({
+        validate: {
+          message: '请输入6-20英文字母或数字组合',
+          mobile: false,
+          message_code: false,
+          password: true,
+          username: false
+        }
+      })
+      return valid
+    }
+
+    if (formData.username != undefined) {
+      if (formData.username != '') {
+        valid = false
+        this.setData({
+          validate: {
+            message: '请输入姓名',
+            mobile: false,
+            message_code: false,
+            password: false,
+            username: true
+          }
+        })
+        return valid
+      }
+    }
+
+    this.setData({
+      validate: {
+        message: '',
+        mobile: false,
+        message_code: false,
+        password: false,
+        username: false
+      }
+    })
+    return valid
+  },
+  getRegisterMessageCode() {
+    this.getMessageCode('register')
+  },
+  getUpdateMessageCode() {
+    this.getMessageCode('update_pwd')
   },
   getMessageCode(type) {
     var self = this
-    if (!/^1\d{10}$/.test(this.data.mobile)) {
-      wx.showToast({
-        title: '手机号码格式不正确',
-        icon: 'loading'
+    let telReg = /^1\d{10}$/
+    if (!telReg.test(this.data.mobile)) {
+      this.setData({
+        validate: {
+          message: '请输正确的手机号码',
+          mobile: true,
+          message_code: false,
+          password: false,
+          username: false
+        }
       })
       return
     }
-    console.log(type);
     if (type == 'register') {
       wx.request({
         url: app.base_url + '/v1/seller/get_sms',
@@ -143,23 +240,26 @@ Page({
         success(res) {
           if (res.data.code != '00000') {
             wx.showToast({
-              title: '获取验证码失败，请重试！',
+              title: '获取验证码失败，请重试',
               icon: 'loading'
             })
           }
           if (res.data.message == 'exist') {
             wx.showToast({
-              title: '该用户已被注册！',
+              title: '该用户已被注册',
               icon: 'success'
+            })
+            self.setData({
+              currentPage: 0
             })
           }
           if (res.data.message == 'ok') {
             wx.showToast({
-              title: '已发送，请查收短信！',
+              title: '已发送，请查收短信',
               icon: 'success'
             })
-            wx.setData({
-              update_pwd_timer_disabled: true
+            self.setData({
+              registe_timer_disabled: true
             })
             self.timer(type)
           }
@@ -177,28 +277,28 @@ Page({
         success(res) {
           if (resp.data.code != '00000') {
             wx.showToast({
-              title: '获取验证码失败，请重试！',
+              title: '获取验证码失败，请重试',
               icon: 'loading'
             })
           }
           if (resp.data.message == 'needRegister') {
             wx.showToast({
-              title: '用户名不存在，请注册！',
+              title: '用户名不存在，请注册',
               icon: 'loading'
             })
-            wx.setData({
+            self.setData({
               currentPage: 1
             })
           }
           if (resp.data.message == 'ok') {
             wx.showToast({
-              title: '已发送，请查收短信！',
+              title: '已发送，请查收短信',
               icon: 'success'
             })
-            wx.setData({
+            self.setData({
               update_pwd_timer_disabled: true
             })
-            this.timer(type)
+            self.timer(type)
           }
         }
       })
@@ -208,31 +308,33 @@ Page({
     var self = this
     if (type == 'register') {
       if (self.data.register_timer_second > 0) {
-        let register_timer_second = self.data.register_timer_second--
-          wx.setData({
-            register_timer_second
-          })
+        let register_timer_second = self.data.register_timer_second - 1
+        self.setData({
+          register_timer_second
+        })
         setTimeout(function() {
           self.timer(type)
         }, 1000);
       } else {
-        wx.setData({
-          registe_timer_disabled: false
+        self.setData({
+          registe_timer_disabled: false,
+          register_timer_second: 60
         })
       }
     }
     if (type == 'update_pwd') {
       if (self.data.update_pwd_timer_second > 0) {
-        let update_pwd_timer_second = self.update_pwd_timer_second--
-          wx.setData({
-            update_pwd_timer_second
-          })
+        let update_pwd_timer_second = self.data.update_pwd_timer_second - 1
+        self.setData({
+          update_pwd_timer_second
+        })
         setTimeout(function() {
           self.timer(type)
         }, 1000);
       } else {
-        wx.setData({
-          update_pwd_timer_disabled: false
+        self.setData({
+          update_pwd_timer_disabled: false,
+          update_pwd_timer_second: 60
         })
       }
     }

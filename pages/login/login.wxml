@@ -1,3 +1,4 @@
+<view wx:if="{{validate.mobile || validate.message_code || validate.password || validate.username}}" class="err_msg">{{validate.message}}</view>
 <view class="body">
     <view class="logo_area">
       <image class="logo" src="http://image.goushuyun.cn/logo_share.png"></image>
@@ -7,17 +8,17 @@
     </view>
     <form wx:if="{{currentPage == 1}}" id="sign_up" bindsubmit="signUp">
       <view class="item">
-        <input name="mobile" type="number" placeholder="手机号码" bindinput="inputMobile"/>
+        <input name="mobile" class="{{validate.mobile ? 'error' : ''}}" type="number" placeholder="手机号码" bindinput="inputMobile" value="{{mobile}}"/>
       </view>
       <view class="item">
-        <input name="message_code" type="number" placeholder="短信验证码"/>
-        <button class="message_btn" disabled="{{registe_timer_disabled}}" bindtap="getMessageCode('register')">{{registe_timer_disabled ? (register_timer_second + 's') : '获取验证码'}}</button>
+        <input name="message_code" class="{{validate.message_code ? 'error' : ''}}" style="width:400rpx" type="number" placeholder="短信验证码"/>
+        <button class="message_btn" disabled="{{registe_timer_disabled}}" bindtap="getRegisterMessageCode">{{registe_timer_disabled ? (register_timer_second + 's') : '获取验证码'}}</button>
       </view>
       <view class="item">
-        <input name="password" placeholder="姓名"/>
+        <input name="username" class="{{validate.username ? 'error' : ''}}" placeholder="姓名"/>
       </view>
       <view class="item">
-        <input name="password" password placeholder="设置密码"/>
+        <input name="password" class="{{validate.password ? 'error' : ''}}" password placeholder="设置密码"/>
       </view>
       <view class="item">
         <button class="submit_btn" formType="submit">注册</button>
@@ -25,17 +26,17 @@
     </form>
     <form wx:else id="sign_in" bindsubmit="signIn">
       <view class="item">
-        <input name="mobile" type="number" placeholder="手机号码" bindinput="inputMobile"/>
+        <input name="mobile" class="{{validate.mobile ? 'error' : ''}}" type="number" placeholder="手机号码" bindinput="inputMobile" value="{{mobile}}"/>
       </view>
       <view wx:if="{{!forgetPwd}}" class="item">
-        <input name="password" password placeholder="登录密码"/>
+        <input name="password" class="{{validate.password ? 'error' : ''}}" password placeholder="登录密码" value="{{password}}"/>
       </view>
       <view wx:if="{{forgetPwd}}" class="item">
-        <input name="message_code" type="number" placeholder="短信验证码"/>
-        <button class="message_btn" disabled="{{update_pwd_timer_disabled}}" bindtap="getMessageCode('update_pwd')">{{update_pwd_timer_disabled ? (update_pwd_timer_second + 's') : '获取验证码'}}</button>
+        <input name="message_code" class="{{validate.message_code ? 'error' : ''}}" style="width:400rpx" type="number" placeholder="短信验证码"/>
+        <button class="message_btn" disabled="{{update_pwd_timer_disabled}}" bindtap="getUpdateMessageCode">{{update_pwd_timer_disabled ? (update_pwd_timer_second + 's') : '获取验证码'}}</button>
       </view>
       <view wx:if="{{forgetPwd}}" class="item">
-        <input name="password" password placeholder="新密码"/>
+        <input name="password" class="{{validate.password ? 'error' : ''}}" password placeholder="新密码"/>
       </view>
       <view class="item">
         <button class="submit_btn" formType="submit">登录</button>

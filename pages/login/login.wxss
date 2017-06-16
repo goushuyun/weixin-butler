@@ -51,9 +51,8 @@ input{
   height: 32px;
   line-height: 32px;
   font-size: 14px;
-  width: 100px;
-  position: absolute;
-  right: 10%;
+  width: 200rpx;
+  margin: 0;
   background-color: #20A0FF;
   color: #FFFFFF;
 }
@@ -75,4 +74,15 @@ input{
   color: #20A0FF;
   text-align: left;
   padding-left: 10px;
+}
+.err_msg {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  top: 0;
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+  background-color: #FF4949;
+  color: #FFFFFF;
 }
