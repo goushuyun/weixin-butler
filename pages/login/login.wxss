@@ -75,14 +75,3 @@ input{
   text-align: left;
   padding-left: 10px;
 }
-.err_msg {
-  position: fixed;
-  width: 100%;
-  z-index: 5;
-  top: 0;
-  text-align: center;
-  font-size: 14px;
-  line-height: 24px;
-  background-color: #FF4949;
-  color: #FFFFFF;
-}

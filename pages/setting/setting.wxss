@@ -46,6 +46,7 @@
   height: 30px;
   line-height: 30px;
   padding: 2px 0;
+  justify-content: space-between;
 }
 .picker {
   margin: 0 10px;

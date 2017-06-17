@@ -4,9 +4,9 @@
     <view class="header" style="border-bottom: 0">
       <text class="title">收书链接</text>
       <view>
-        <text selectable class="link">快将收书码快将收书码分享给用户吧</text>
+        <text selectable class="link">{{qrcode_url}}</text>
       </view>
-      <text class="active">复制</text>
+      <text class="active" bindtap="copyUrl">复制</text>
     </view>
   </view>
   <!-- 收书学校 -->
@@ -16,9 +16,9 @@
       <text class="active" bindtap="goToSchoolList">修改</text>
     </view>
     <view class="school_area">
-      <view class="school">上海应用技术大学</view>
-      <view class="school">上海应用技术大学</view>
-      <view class="school">上海应用技术大学</view>
+      <block wx:for="{{schools}}">
+        <view wx:if="{{item.is_recyling}}" class="school">{{item.name}}</view>
+      </block>
     </view>
   </view>
   <!-- 收书说明 -->
@@ -27,7 +27,7 @@
       <text class="title">收书说明</text>
       <text class="active" bindtap="goToExplanation">修改</text>
     </view>
-    <view class="textarea">公告给每一个卖书的人 ...</view>
+    <view class="textarea">{{summary}}</view>
   </view>
   <!-- 收书时间 -->
   <view class="wraper">
@@ -36,10 +36,12 @@
       <text class="active" bindtap="goToReservation">修改</text>
     </view>
     <view class="time_area">
-      <view class="item" wx:for="{{times}}">
-        <view class="desp">{{item.value}}</view>
-        <view class="picker">{{item.start_time}}:00 - {{item.end_time}}:00</view>
-      </view>
+      <block wx:for="{{appoint_times}}">
+        <view wx:if="{{item.is_work}}" class="item">
+          <view class="desp">{{item.week_ch}}</view>
+          <view class="picker">{{item.start_at}}：00 - {{item.end_at}}：00</view>
+        </view>
+      </block>
     </view>
   </view>
 

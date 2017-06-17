@@ -1,15 +1,15 @@
 <view class="body">
-  <form bindsubmit="formSubmit">
+  <form bindsubmit="saveSummary">
     <view class="area">
       <view class="item">
         <view>收书说明</view>
       </view>
       <view class="remark">
-          <textarea name="remark" maxlength="50" placeholder="请输入收书说明" value="{{remark}}"/>
+          <textarea name="summary" maxlength="50" placeholder="请输入收书说明" value="{{summary}}"/>
       </view>
     </view>
     <view class="footer">
-      <button class="cancel" formType="reset">取消</button>
+      <button class="cancel" bindtap="reset">取消</button>
       <button class="confirm" formType="submit">保存</button>
     </view>
   </form>

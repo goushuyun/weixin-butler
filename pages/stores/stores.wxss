@@ -1,6 +1,6 @@
 .store{
   background-color: white;
-  margin-top: 10px;
+  margin-bottom: 10px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -37,7 +37,7 @@
   padding-right: 15px;
 }
 .add_btn {
-  margin-top: 10px;
+  margin: 10px 0;
   width: 100%;
   height: 44px;
   line-height: 44px;
@@ -45,4 +45,43 @@
   background-color: #FFFFFF;
   color: #1581D9;
   font-weight: bold;
+}
+.add_area {
+  background-color: #FFFFFF;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  height: 44px;
+  line-height: 44px;
+}
+.desp {
+  display: flex;
+  flex-grow: 0;
+}
+.value {
+  flex-grow: 1;
+}
+.add_store {
+  box-sizing: border-box;
+  height: 32px;
+  line-height: 32px;
+  font-size: 14px;
+  margin-left: 3px;
+}
+input{
+  box-sizing: border-box;
+  width: 100%;
+  height: 32px;
+  border: 1px solid #E0E0E0;
+  text-align: left;
+  padding: 0px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+.body {
+  bottom: 44px;
+}
+.sign_out {
+  width: 100%;
+  height: 44px;
+  border-radius: 0;
 }

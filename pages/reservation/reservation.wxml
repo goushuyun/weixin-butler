@@ -3,20 +3,22 @@
     <view class="item">
       <view>请勾选收书时间</view>
     </view>
-    <view class="item" wx:for="{{times}}">
-      <checkbox value="{{item.id}}" checked="{{item.checked}}"/>
-      <view class="desp">{{item.value}}</view>
-      <picker mode="selector" range="{{time_area}}" value="{{item.start_time}}" bindchange="bindStartTimeChange">
-        <view class="picker">{{item.start_time}}:00</view>
-      </picker>
-      <text>-</text>
-      <picker mode="selector" range="{{time_area}}" value="{{item.end_time}}" bindchange="bindEndTimeChange">
-        <view class="picker">{{item.end_time}}:00</view>
-      </picker>
-    </view>
+    <checkbox-group bindchange="checkboxChange">
+      <view class="item" wx:for="{{appoint_times}}">
+        <checkbox value="{{index}}" checked="{{item.is_work}}"/>
+        <view class="desp">{{item.week_ch}}</view>
+        <picker mode="selector" range="{{time_area}}" data-index="{{index}}" bindchange="bindStartAtChange">
+          <view class="picker">{{item.start_at_str}}：00</view>
+        </picker>
+        <text>-</text>
+        <picker mode="selector" range="{{time_area}}" data-index="{{index}}" bindchange="bindEndAtChange">
+          <view class="picker">{{item.end_at_str}}：00</view>
+        </picker>
+      </view>
+    </checkbox-group>
   </view>
   <view class="footer">
-    <button class="cancel" formType="reset">取消</button>
-    <button class="confirm" formType="submit">保存</button>
+    <button class="cancel" bindtap="reset">取消</button>
+    <button class="confirm" bindtap="submit">保存</button>
   </view>
 </view>

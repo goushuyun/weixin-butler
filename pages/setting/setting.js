@@ -1,62 +1,112 @@
+var app = getApp()
 Page({
   data: {
-    id: '',
-    times: [{
-        id: '1',
-        value: '周一',
-        start_time: 3,
-        end_time: 20,
-        checked: 'true'
-      },
-      {
-        id: '2',
-        value: '周二',
-        start_time: 3,
-        end_time: 20,
-        checked: 'true'
-      }, {
-        id: '3',
-        value: '周三',
-        start_time: 3,
-        end_time: 20,
-        checked: 'true'
-      }, {
-        id: '4',
-        value: '周四',
-        start_time: 3,
-        end_time: 20,
-        checked: 'true'
-      }, {
-        id: '5',
-        value: '周五',
-        start_time: 3,
-        end_time: 20,
-        checked: 'true'
-      }, {
-        id: '6',
-        value: '周六',
-        start_time: 3,
-        end_time: 20,
-        checked: 'true'
-      }, {
-        id: '0',
-        value: '周日',
-        start_time: 3,
-        end_time: 20,
-        checked: 'true'
-      }
-    ]
+    qrcode_url: '',
+    schools: [],
+    summary: '', //收书说明
+    appoint_times: []
   },
-  onLoad(options) {
-    var id = options.id
-    this.setData({
-      id: id
+  onShow() {
+    this.getSchools()
+    this.getStoreRecylingInfo()
+  },
+  getSchools() {
+    var self = this
+    wx.request({
+      url: app.base_url + '/v1/school/store_schools',
+      header: {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + wx.getStorageSync('token')
+      },
+      method: 'POST',
+      data: {},
+      success(res) {
+        if (res.data.message == 'ok') {
+          self.setData({
+            schools: res.data.data
+          })
+        }
+      }
+    })
+  },
+  // 店铺回收信息
+  getStoreRecylingInfo() {
+    var self = this
+    wx.request({
+      url: app.base_url + '/v1/recyling/store_recyling_info',
+      header: {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + wx.getStorageSync('token')
+      },
+      method: 'POST',
+      data: {},
+      success(res) {
+        if (res.data.message == 'ok') {
+          var data = res.data.data
+          var qrcode_url = data.qrcode_url
+          var summary = data.summary
+          var appoint_times = data.appoint_times.map(el => {
+            if (el.start_at < 10) {
+              el.start_at = '0' + el.start_at
+            } else {
+              el.start_at = '' + el.start_at
+            }
+            if (el.end_at < 10) {
+              el.end_at = '0' + el.end_at
+            } else {
+              el.end_at = '' + el.end_at
+            }
+            switch (el.week) {
+              case 'mon':
+                el.week_ch = '星期一'
+                break;
+              case 'tues':
+                el.week_ch = '星期二'
+                break;
+              case 'wed':
+                el.week_ch = '星期三'
+                break;
+              case 'thur':
+                el.week_ch = '星期四'
+                break;
+              case 'fri':
+                el.week_ch = '星期五'
+                break;
+              case 'sat':
+                el.week_ch = '星期六'
+                break;
+              case 'sun':
+                el.week_ch = '星期日'
+                break;
+              default:
+            }
+            return el
+          })
+          self.setData({
+            qrcode_url,
+            summary,
+            appoint_times
+          })
+        }
+      }
     })
   },
   goToMeets() {
     var id = this.data.id
     wx.redirectTo({
       url: '/pages/meets/meets?id=' + id
+    })
+  },
+  copyUrl() {
+    var qrcode_url = this.data.qrcode_url
+    wx.setClipboardData({
+      data: qrcode_url,
+      success: function(res) {
+        wx.showToast({
+          title: '已复制到剪切板',
+          icon: 'success'
+        })
+      }
     })
   },
   goToSchoolList() {

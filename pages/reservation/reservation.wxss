@@ -22,3 +22,6 @@
   color: #1581D9;
   font-weight: bold;
 }
+.item {
+  justify-content: space-between;
+}

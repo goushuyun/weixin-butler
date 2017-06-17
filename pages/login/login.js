@@ -10,14 +10,31 @@ Page({
     update_pwd_timer_second: 60,
     update_pwd_timer_disabled: false,
 
-    mobile: '18817953402',
-    password: '12345678',
+    mobile: '',
+    password: '',
     validate: {
       message: '',
       mobile: false,
       message_code: false,
       password: false,
       username: false
+    }
+  },
+  onLoad(option) {
+    var mobile = wx.getStorageSync('mobile')
+    var password = wx.getStorageSync('password')
+    this.setData({
+      mobile,
+      password
+    })
+    if (option.sign_out) {
+      return
+    } else {
+      var formData = {
+        mobile: mobile,
+        password: password
+      }
+      this.login(formData)
     }
   },
   goToPage(e) {
@@ -75,6 +92,9 @@ Page({
     }
   },
   login(formData) {
+    wx.showLoading({
+      title: '登录中...',
+    })
     wx.request({
       url: app.base_url + '/v1/seller/login',
       method: 'POST',
@@ -83,8 +103,11 @@ Page({
         password: formData.password
       },
       success(res) {
+        wx.hideLoading()
         if (res.data.message == 'ok') {
           wx.setStorageSync('token', res.data.data.token)
+          wx.setStorageSync('mobile', formData.mobile)
+          wx.setStorageSync('password', formData.password)
           wx.redirectTo({
             url: '/pages/stores/stores'
           })

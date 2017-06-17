@@ -81,3 +81,14 @@
   border: 1px solid #FF4949;
   color: #FF4949;
 }
+.err_msg {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  top: 0;
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+  background-color: #FF4949;
+  color: #FFFFFF;
+}

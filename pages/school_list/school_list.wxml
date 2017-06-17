@@ -3,14 +3,16 @@
     <view class="item">
       <view>请勾选收书学校</view>
     </view>
-    <view class="item" wx:for="{{schools}}">
-      <checkbox value="{{item.id}}" checked="{{item.checked}}"/>
-      <view class="desp">{{item.value}}</view>
-    </view>
+    <checkbox-group bindchange="checkboxChange">
+      <view class="item" wx:for="{{schools}}">
+        <checkbox value="{{item.id}}" checked="{{item.is_recyling}}"/>
+        <view class="desp">{{item.name}}</view>
+      </view>
+    </checkbox-group>
   </view>
   <view class="add_btn" bindtap="goToSchoolAdd">+ 添加学校</view>
   <view class="footer">
-    <button class="cancel" formType="reset">取消</button>
-    <button class="confirm" formType="submit">保存</button>
+    <button class="cancel" bindtap="reset">取消</button>
+    <button class="confirm" bindtap="submit">保存</button>
   </view>
 </view>
