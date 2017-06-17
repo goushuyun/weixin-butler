@@ -94,7 +94,7 @@ Page({
   goToMeets() {
     var id = this.data.id
     wx.redirectTo({
-      url: '/pages/meets/meets?id=' + id
+      url: '/pages/recycle_list/recycle_list'
     })
   },
   copyUrl() {
@@ -116,12 +116,12 @@ Page({
   },
   goToExplanation() {
     wx.navigateTo({
-      url: '/pages/explanation/explanation'
+      url: '/pages/summary/summary'
     })
   },
   goToReservation() {
     wx.navigateTo({
-      url: '/pages/reservation/reservation'
+      url: '/pages/time_list/time_list'
     })
   }
 })

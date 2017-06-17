@@ -1,22 +1,18 @@
 {
-    "pages": [
-        "pages/login/login",
-        "pages/setting/setting",
-        "pages/stores/stores",
-        "pages/order_detail/order_detail",
-        "pages/order/order",
-        "pages/welcome/welcome",
-        "pages/reservation/reservation",
-        "pages/explanation/explanation",
-        "pages/school_list/school_list",
-        "pages/school_add/school_add",
-        "pages/meets/meets",
-        "pages/recycle/recycle"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#1581D9",
-        "navigationBarTitleText": "购书云管家",
-        "navigationBarTextStyle": "white"
-    }
+  "pages": [
+    "pages/login/login",
+    "pages/recycle_list/recycle_list",
+    "pages/store_list/store_list",
+    "pages/setting/setting",
+    "pages/summary/summary",
+    "pages/school_list/school_list",
+    "pages/school_add/school_add",
+    "pages/time_list/time_list"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1581D9",
+    "navigationBarTitleText": "购书云管家",
+    "navigationBarTextStyle": "white"
+  }
 }

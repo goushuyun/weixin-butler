@@ -109,7 +109,7 @@ Page({
           wx.setStorageSync('mobile', formData.mobile)
           wx.setStorageSync('password', formData.password)
           wx.redirectTo({
-            url: '/pages/stores/stores'
+            url: '/pages/store_list/store_list'
           })
         } else if (res.data.message == 'notFound') {
           wx.showToast({

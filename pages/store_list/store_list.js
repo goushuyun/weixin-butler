@@ -56,7 +56,7 @@ Page({
           wx.setStorageSync('token', res.data.token)
           wx.setStorageSync('store_id', id)
           wx.navigateTo({
-            url: '/pages/meets/meets'
+            url: '/pages/recycle_list/recycle_list'
           })
         }
       }

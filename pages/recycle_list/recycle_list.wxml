@@ -1,0 +1,102 @@
+<view class="head">
+  <view class="school">
+    <view class="icon_area">
+      <image class="icon" src="../../images/location.png"></image>
+    </view>
+    <picker bindchange="changeSchool" value="{{index}}" range="{{schools}}" range-key="name">
+      <view>{{schools[currentSchool].name}}</view>
+    </picker>
+  </view>
+  <view class="store" bindtap="changeStore">
+    <text>切换店铺</text>
+    <view class="icon_area">
+      <image class="icon" src="../../images/shop.png"></image>
+    </view>
+  </view>
+</view>
+
+<view class="panel">
+  <view class="select" bindtap="changeSortBy">
+    <text>{{sort_by_name}}</text>
+    <view class="icon_area">
+      <image class="icon" src="../../images/order.png"></image>
+    </view>
+  </view>
+  <view class="tabs">
+    <view class="tab {{currentPage == index ? 'currentTab': ''}}" wx:for="{{tabs}}" bindtap="goToPage" data-index="{{index}}" wx:key="*this">{{item}}</view>
+  </view>
+</view>
+
+<scroll-view class="body" scroll-y="true" bindscrolltolower="getMoreOrders" lower-threshold="100">
+  <view style="height: 10px; width: 100%; background-color: #EFF3F7;"></view>
+  <view wx:for="{{orders}}" wx:for-item="order" class="recycle_item">
+    <view class="avatar_area">
+      <image class="avatar" src="http://wx.qlogo.cn/mmopen/SMOyUAg32jk5cCwAVgl8PpWLdboXKBDnYVZrs1zJCTk4OPicticBfyxPAoNjvLC1P9dHyR0anPiakPKM1NxDcxsUA/0"></image>
+    </view>
+    <view class="detail_area">
+      <view class="remark">{{order.remark ? order.remark : '该用户太匆忙，没写下任何备注信息...'}}</view>
+      <view class="imgs_list">
+        <block wx:for="{{order.images}}" wx:for-item="image">
+          <image class="img_item" src="{{'http://images.goushuyun.cn/' + image.url}}"></image>
+        </block>
+      </view>
+      <view class="dot_item">
+        <image class="icon" src="../../images/dot.png"></image>
+        <text>{{order.create_time}}</text>
+      </view>
+      <view class="dot_item">
+        <image class="icon" src="../../images/dot.png"></image>
+        <text>{{order.addr}}</text>
+      </view>
+      <view class="dot_item">
+        <image class="icon" src="../../images/dot.png"></image>
+        <text>{{order.mobile}}</text>
+      </view>
+      <view class="btns">
+        <view class="moment">{{order.time_ago}}</view>
+        <view class="align-center">
+          <view wx:if="{{state != 3}}" class="button" data-id="{{order.id}}" data-index="{{index}}" bindtap="preHoldOn">
+            <image class="icon" src="../../images/re_delay.png"></image>
+            <text class="btn">搁置</text>
+          </view>
+          <view wx:if="{{state != 3}}" class="button" data-id="{{order.id}}" data-index="{{index}}" bindtap="accomplish">
+            <image class="icon" src="../../images/complete.png"></image>
+            <text class="btn">完成</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view wx:if="{{hold_on}}" class="hold_on">
+  <form bindsubmit="holdOn">
+    <view class="seller_remark">
+        <label>备注信息</label>
+        <textarea name="remark" maxlength="50" placeholder="输入备注内容（可不填）" value="{{seller_remark}}"/>
+        <view class="picker_area">
+          <label>选择时间：</label>
+          <picker mode="date" value="{{appoint_start_date}}" start="2017-01-01" end="2027-01-01" bindchange="bindDateChange">
+            <view class="picker">{{appoint_start_date}}</view>
+          </picker>
+          <picker mode="time" value="{{appoint_start_at}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+            <view class="picker">{{appoint_start_at}}</view>
+          </picker>
+        </view>
+        <button class="hold_on_btn" type="primary" formType="submit">确定</button>
+    </view>
+  </form>
+</view>
+<view class="footer">
+  <view class="meets">
+    <view>
+      <image src="/images/home_selected.png"></image>
+      <view class="text" style="color:#1581D9">首页</view>
+    </view>
+  </view>
+  <view class="setting" bindtap="goToSetting">
+    <view>
+      <image src="/images/setting.png"></image>
+      <view class="text" style="color:#888888">设置</view>
+    </view>
+  </view>
+</view>

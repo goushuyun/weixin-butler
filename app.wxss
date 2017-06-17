@@ -1,11 +1,89 @@
-/**app.wxss**/
-@import "common/butler.wxss";
 #view_container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 200rpx 0;
-    box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+/* 顶部部分 */
+.head {
+  position: fixed;
+  top: 0;
+  height: 44px;
+  line-height: 44px;
+  width: 100%;
+  font-size: 16px;
+  color: #FFFFFF;
+  background-color: #1581D9;
+  box-sizing: border-box;
+}
+/* 主体部分 */
+.body {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #EFF3F7
+}
+/* 主要信息区域 */
+.area {
+  background-color: #FFFFFF;
+  padding: 10px 0;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+}
+/* 主体信息条目 */
+.item {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 15px;
+}
+/* 底部按钮区域 */
+.footer {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  height: 46px;
+  width: 100%;
+  border-top: 1px solid #F4F3F3;
+}
+/* 底部取消按钮 */
+.cancel {
+  width: 50%;
+  height: 44px;
+  border-radius: 0;
+  background-color: #2BAF2B;
+  color: #FFFFFF;
+}
+/* 底部确定按钮 */
+.confirm {
+  width: 50%;
+  height: 44px;
+  border-radius: 0;
+  background-color: #1581D9;
+  color: #FFFFFF;
+}
+/* 表单验证错误的输入框样式 */
+.error {
+  border: 1px solid #FF4949;
+  color: #FF4949;
+}
+/* 表单验证错误提示信息样式 */
+.err_msg {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  top: 0;
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+  background-color: #FF4949;
+  color: #FFFFFF;
 }

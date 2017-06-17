@@ -15,7 +15,7 @@
   <view wx:if="{{!add_store}}" class="add_btn" bindtap="preAddStore">+ 添加云店铺</view>
   <form wx:else bindsubmit="confirmAddStore" bindreset="cancelAddStore">
     <view class="item add_area">
-      <view class="value"><input name="name" placeholder="输入云店铺名称"/></view>
+      <view class="value"><input name="name" focus placeholder="输入云店铺名称"/></view>
       <view class="desp">
         <button class="add_store" formType="submit">添加</button>
         <button class="add_store" formType="reset">取消</button>

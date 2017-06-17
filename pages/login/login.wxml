@@ -3,7 +3,7 @@
     <view class="logo_area">
       <image class="logo" src="http://image.goushuyun.cn/logo_share.png"></image>
     </view>
-    <view class="tabs" >
+    <view class="tabs">
       <view class="tab {{currentPage == index ? 'currentTab': ''}}" wx:for="{{tabs}}" bindtap="goToPage" data-index="{{index}}" wx:key="*this">{{item}}</view>
     </view>
     <form wx:if="{{currentPage == 1}}" id="sign_up" bindsubmit="signUp">

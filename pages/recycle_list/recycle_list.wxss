@@ -1,0 +1,219 @@
+.hold_on {
+  position: fixed;
+  top: 110px;
+  left: 10px;
+  right: 10px;
+  z-index: 5;
+}
+.seller_remark{
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #F4F3F3;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+}
+.seller_remark textarea{
+  box-sizing: border-box;
+  margin: 12px 0;
+  height: 100px;
+  width: 100%;
+  border: 1px solid #f4f3f3;
+  border-radius: 4px;
+  font-size: 13px;
+  padding: 16px 12px;
+  background-color: #EFF3F7;
+}
+
+.seller_remark label{
+  font-size: 15px;
+  color: #333;
+}
+.picker_area {
+  display: flex;
+  align-items: center;
+}
+.picker {
+  margin: 0 10px;
+  box-sizing: border-box;
+  height: 32px;
+  line-height: 32px;
+  border: 1px solid #E0E0E0;
+  text-align: left;
+  padding: 0 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.hold_on_btn {
+  height: 30px;
+  line-height: 30px;
+  margin-top: 15px;
+  width: 50%;
+}
+.body {
+  top: 88px;
+  bottom: 60px;
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 13px;
+}
+.icon_area {
+  width: 40px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon{
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+}
+.school,.store,.select {
+  display: flex;
+  text-align: center;
+}
+
+.tabs{
+  display: flex;
+  justify-content:space-around;
+}
+.tab{
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
+  width: 60px;
+  color: #97B0D5;
+  box-sizing: border-box;
+}
+.currentTab{
+  color: #20A0FF;
+  border-bottom: 2px solid #20A0FF;
+}
+
+/* 预约类型选择 */
+.panel{
+  width: 100%;
+  padding: 0 15px;
+  position: fixed;
+  top: 44px;
+  height: 44px;
+  line-height: 44px;
+  font-size: 14px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-bottom: 1px solid #F4F3F3;
+}
+
+.recycle_item {
+  margin-bottom: 10px;
+  width: 100%;
+  background-color: #FFFFFF;
+  padding: 15px 10px;
+  display: flex;
+  box-sizing: border-box;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+}
+.avatar_area {
+  min-width: 140rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 0;
+}
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+}
+.detail_area {
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+.remark {
+  margin-left: 5px;
+  box-sizing: border-box;
+}
+
+.img_item {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 10px 5px;
+}
+.dot_item {
+  line-height: 30px;
+  display: flex;
+  align-items: baseline;
+  box-sizing: border-box;
+}
+
+.btns {
+  line-height: 30px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.btn {
+  margin-left: 3px;
+}
+.button {
+  padding: 0 10px;
+  margin: 0 5px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 6px;
+  border: 1px solid #97B0D5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.moment {
+  position: relative;
+  bottom: 8px;
+  left: 4px;
+  font-size: 14px;
+}
+.align-center {
+  display: flex;
+  align-items: center;
+}
+.footer {
+  background-color: #F8F8F8;
+  height: 60px;
+  padding-top: 6px;
+  justify-content: space-around;
+  border-top: 1px solid #F4F3F3;
+}
+.footer image {
+  height: 26px;
+  width: 26px;
+}
+.footer .text {
+  font-size: 12px;
+}
+.meets {
+  width: 50%;
+  text-align: center;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.setting {
+  width: 50%;
+  text-align: center;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
