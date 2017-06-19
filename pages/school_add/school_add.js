@@ -21,25 +21,25 @@ Page({
     }
   },
   onLoad() {
-    var self = this
-    wx.getLocation({
-      success(res) {
-        self.setData({
-          location: {
-            latitude: res.latitude,
-            longitude: res.longitude,
-            address: res.address,
-            name: res.name
-          },
-          markers: [{
-            latitude: res.latitude,
-            longitude: res.longitude,
-            width: 50,
-            height: 50
-          }]
-        })
-      }
-    })
+    // var self = this
+    // wx.getLocation({
+    //   success(res) {
+    //     self.setData({
+    //       location: {
+    //         latitude: res.latitude,
+    //         longitude: res.longitude,
+    //         address: res.address,
+    //         name: res.name
+    //       },
+    //       markers: [{
+    //         latitude: res.latitude,
+    //         longitude: res.longitude,
+    //         width: 50,
+    //         height: 50
+    //       }]
+    //     })
+    //   }
+    // })
   },
   checkData(formData) {
     var valid = true
@@ -128,12 +128,24 @@ Page({
     var name = value.name
     var tel = value.tel
     var express_fee = value.express_fee
-    var lat = location.latitude
-    var lng = location.longitude
-    if (!this.checkData({name,tel,express_fee})) {
+    var lat = parseFloat(location.latitude)
+    var lng = parseFloat(location.longitude)
+    var formData = {
+      name,
+      tel,
+      express_fee
+    }
+    if (!this.checkData(formData)) {
       return
     }
-    express_fee = express_fee * 100
+    express_fee = parseInt(express_fee * 100)
+    var data = {
+      name,
+      tel,
+      express_fee,
+      lat,
+      lng
+    }
     wx.request({
       url: app.base_url + '/v1/school/add',
       header: {
@@ -141,14 +153,9 @@ Page({
         'Authorization': 'Bearer ' + wx.getStorageSync('token')
       },
       method: 'POST',
-      data: {
-        name,
-        tel,
-        express_fee,
-        lat,
-        lng
-      },
+      data: data,
       success(res) {
+        console.log(res);
         if (res.data.message == 'ok') {
           wx.navigateBack({
             delta: 1

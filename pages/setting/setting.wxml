@@ -13,35 +13,42 @@
   <view class="wraper">
     <view class="header">
       <text class="title">收书学校</text>
-      <text class="active" bindtap="goToSchoolList">修改</text>
+      <text class="active" bindtap="goToSchoolList">设置</text>
     </view>
-    <view class="school_area">
-      <block wx:for="{{schools}}">
-        <view wx:if="{{item.is_recyling}}" class="school">{{item.name}}</view>
-      </block>
+    <view wx:if="{{schools.length == 0}}" class="school_area">
+      <view class="desp" style="color: #888888;">点击右侧"设置"修改收书学校</view>
+    </view>
+    <view wx:else class="school_area">
+      <view wx:for="{{schools}}" class="school">{{item.name}}</view>
     </view>
   </view>
   <!-- 收书说明 -->
   <view class="wraper">
     <view class="header">
       <text class="title">收书说明</text>
-      <text class="active" bindtap="goToExplanation">修改</text>
+      <text class="active" bindtap="goToExplanation">设置</text>
     </view>
-    <view class="textarea">{{summary}}</view>
+    <view wx:if="{{summary == ''}}" class="textarea">
+      <view class="desp" style="color: #888888;">点击右侧"设置"修改收书说明</view>
+    </view>
+    <view wx:else class="textarea">{{summary}}
+      <!-- <view disabled auto-height fixed value="{{summary}}"/> -->
+    </view>
   </view>
   <!-- 收书时间 -->
   <view class="wraper">
     <view class="header">
       <text class="title">预约时间</text>
-      <text class="active" bindtap="goToReservation">修改</text>
+      <text class="active" bindtap="goToReservation">设置</text>
     </view>
-    <view class="time_area">
-      <block wx:for="{{appoint_times}}">
-        <view wx:if="{{item.is_work}}" class="item">
-          <view class="desp">{{item.week_ch}}</view>
-          <view class="picker">{{item.start_at}}：00 - {{item.end_at}}：00</view>
-        </view>
-      </block>
+    <view wx:if="{{appoint_times.length == 0}}" class="time_area">
+      <view class="desp" style="color: #888888;">点击右侧"设置"修改预约时间</view>
+    </view>
+    <view wx:else class="time_area">
+      <view wx:for="{{appoint_times}}" class="item">
+        <view class="desp">{{item.week_ch}}</view>
+        <view class="picker">{{item.start_at}}：00 - {{item.end_at}}：00</view>
+      </view>
     </view>
   </view>
 

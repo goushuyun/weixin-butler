@@ -15,13 +15,13 @@ Page({
     var item_index = e.currentTarget.dataset.index
     var time_index = e.detail.value
     var appoint_times = this.data.appoint_times
-    if (time_index >= appoint_times[item_index].end_at) {
-      wx.showToast({
-        title: '请选择合理的时间范围',
-        icon: 'loading'
-      })
-      return
-    }
+    // if (time_index >= appoint_times[item_index].end_at) {
+    //   wx.showToast({
+    //     title: '请选择合理的时间范围',
+    //     icon: 'loading'
+    //   })
+    //   return
+    // }
     appoint_times[item_index].start_at = time_index
     if (time_index < 10) {
       appoint_times[item_index].start_at_str = '0' + time_index
@@ -36,13 +36,13 @@ Page({
     var item_index = e.currentTarget.dataset.index
     var time_index = e.detail.value
     var appoint_times = this.data.appoint_times
-    if (time_index <= appoint_times[item_index].start_at) {
-      wx.showToast({
-        title: '请选择合理的时间范围',
-        icon: 'loading'
-      })
-      return
-    }
+    // if (time_index <= appoint_times[item_index].start_at) {
+    //   wx.showToast({
+    //     title: '请选择合理的时间范围',
+    //     icon: 'loading'
+    //   })
+    //   return
+    // }
     appoint_times[item_index].end_at = time_index
     if (time_index < 10) {
       appoint_times[item_index].end_at_str = '0' + time_index
@@ -54,8 +54,18 @@ Page({
     })
   },
   checkboxChange(e) {
+    var appoint_times = this.data.appoint_times
+    var checked_list = e.detail.value
+    var base_list = ['0', '1', '2', '3', '4', '5', '6']
+    for (var i = 0; i < 7; i++) {
+      if (checked_list.indexOf(base_list[i]) == -1) {
+        appoint_times[i].is_work = false
+      } else {
+        appoint_times[i].is_work = true
+      }
+    }
     this.setData({
-      checked_list: e.detail.value
+      checked_list
     })
   },
   getStoreRecylingInfo() {

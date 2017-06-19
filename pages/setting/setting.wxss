@@ -31,13 +31,16 @@
   width: 40px;
   flex-grow: 0;
   color: #217AC0;
+  font-size: 14px;
 }
 .school_area {
   padding: 10px;
+  font-size: 14px;
 }
 .time_area {
   padding: 10px;
   margin-bottom: 10px;
+  font-size: 14px;
 }
 .school {
   line-height: 30px;
@@ -59,10 +62,12 @@
   border-radius: 10px;
   font-size: 14px;
 }
-.textarea{
+.textarea {
   box-sizing: border-box;
   width: 100%;
   padding: 10px;
+  font-size: 14px;
+  line-height: 30px;
 }
 .body {
   bottom: 60px;

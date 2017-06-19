@@ -6,6 +6,7 @@
     <picker bindchange="changeSchool" value="{{index}}" range="{{schools}}" range-key="name">
       <view>{{schools[currentSchool].name}}</view>
     </picker>
+    <view wx:if="{{schools.length == 0}}" bindtap="changeSchool">请添加学校</view>
   </view>
   <view class="store" bindtap="changeStore">
     <text>切换店铺</text>
@@ -16,7 +17,7 @@
 </view>
 
 <view class="panel">
-  <view class="select" bindtap="changeSortBy">
+  <view class="select" bindtap="changeSortBy" style="border-right: 2px solid #F4F3F3;">
     <text>{{sort_by_name}}</text>
     <view class="icon_area">
       <image class="icon" src="../../images/order.png"></image>
@@ -29,7 +30,7 @@
 
 <scroll-view class="body" scroll-y="true" bindscrolltolower="getMoreOrders">
   <view style="height: 10px; width: 100%; background-color: #EFF3F7;"></view>
-  <view wx:if="{{orders.length == 0}}" style="line-height: 30px; width: auto; font-size: 14px; text-align: center; margin: 15px 0;">
+  <view wx:if="{{orders.length == 0}}" style="line-height: 30px; width: auto; font-size: 14px; text-align: center; margin: 15px 0; color: #888888;">
     <view>还没有收书预约哦~</view>
     <view>快把设置中的“收书码”分享给学生吧！</view>
   </view>

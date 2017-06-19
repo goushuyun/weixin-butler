@@ -304,13 +304,13 @@ Page({
           mobile: self.data.mobile
         },
         success(res) {
-          if (resp.data.code != '00000') {
+          if (res.data.code != '00000') {
             wx.showToast({
               title: '获取验证码失败，请重试',
               icon: 'loading'
             })
           }
-          if (resp.data.message == 'needRegister') {
+          if (res.data.message == 'needRegister') {
             wx.showToast({
               title: '用户名不存在，请注册',
               icon: 'loading'
@@ -319,7 +319,7 @@ Page({
               currentPage: 1
             })
           }
-          if (resp.data.message == 'ok') {
+          if (res.data.message == 'ok') {
             wx.showToast({
               title: '已发送，请查收短信',
               icon: 'success'

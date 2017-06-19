@@ -47,6 +47,9 @@ Page({
   },
   submit() {
     var school_ids = this.data.school_ids
+    if (school_ids.length == 0) {
+      school_ids.push('0dda6e86-529c-11e7-b114-b2f933d5fe66')
+    }
     wx.request({
       url: app.base_url + '/v1/recyling/update_school_recyling_state',
       header: {

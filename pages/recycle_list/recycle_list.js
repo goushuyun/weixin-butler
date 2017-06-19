@@ -25,7 +25,7 @@ Page({
     remarks: ['修改预约时间','未联系到用户','临时有事','其他原因'],
     currentRemark: 0
   },
-  onLoad() {
+  onShow() {
     this.getSchools()
   },
   changeRemark(e) {
@@ -34,6 +34,17 @@ Page({
     })
   },
   goToPage(e) {
+    if (this.data.schools == 0) {
+      wx.showToast({
+        title: '请添先加学校',
+        icon: 'loading'
+      })
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '/pages/school_add/school_add'
+        })
+      }, 1000)
+    }
     var currentPage = e.target.dataset.index
     var state = currentPage + 1
     var school_id = this.data.schools[this.data.currentSchool].id
@@ -62,45 +73,57 @@ Page({
     this.getOrderList(data)
   },
   changeSortBy() {
-    var self = this
-    var state1 = ['按预约时间排序', '按发布时间排序']
-    var state2 = ['按预约时间排序', '按搁置时间排序']
-    var state3 = ['按预约时间排序', '按完成时间排序']
-    var itemList = []
-    var state = self.data.state
-    switch (state) {
-      case 1:
-        itemList = state1
-        break;
-      case 2:
-        itemList = state2
-        break;
-      case 3:
-        itemList = state3
-        break;
-      default:
-    }
-    wx.showActionSheet({
-      itemList: itemList,
-      success: function(res) {
-        var school_id = self.data.schools[self.data.currentSchool].id
-        var sort_by = self.data.sort_by_list[res.tapIndex]
-        var data = {
-          school_id: school_id, //required
-          sort_by: sort_by, //appoint_start_at || update_at
-          sequence_by: "desc", //asc || desc
-          page: 1,
-          size: 15,
-          state: state //1待处理  2 搁置中 3 已完成
-        }
-        self.setData({
-          page: 1,
-          sort_by: sort_by,
-          sort_by_name: itemList[res.tapIndex]
+    if (this.data.schools == 0) {
+      wx.showToast({
+        title: '请添先加学校',
+        icon: 'loading'
+      })
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '/pages/school_add/school_add'
         })
-        self.getOrderList(data)
+      }, 1000)
+    } else {
+      var self = this
+      var state1 = ['按预约时间排序', '按发布时间排序']
+      var state2 = ['按预约时间排序', '按搁置时间排序']
+      var state3 = ['按预约时间排序', '按完成时间排序']
+      var itemList = []
+      var state = self.data.state
+      switch (state) {
+        case 1:
+          itemList = state1
+          break;
+        case 2:
+          itemList = state2
+          break;
+        case 3:
+          itemList = state3
+          break;
+        default:
       }
-    })
+      wx.showActionSheet({
+        itemList: itemList,
+        success: function(res) {
+          var school_id = self.data.schools[self.data.currentSchool].id
+          var sort_by = self.data.sort_by_list[res.tapIndex]
+          var data = {
+            school_id: school_id, //required
+            sort_by: sort_by, //appoint_start_at || update_at
+            sequence_by: "desc", //asc || desc
+            page: 1,
+            size: 15,
+            state: state //1待处理  2 搁置中 3 已完成
+          }
+          self.setData({
+            page: 1,
+            sort_by: sort_by,
+            sort_by_name: itemList[res.tapIndex]
+          })
+          self.getOrderList(data)
+        }
+      })
+    }
   },
   goToSetting() {
     var id = this.data.id
@@ -128,6 +151,18 @@ Page({
           self.setData({
             schools: res.data.data
           })
+          if (res.data.data == 0) {
+            wx.showToast({
+              title: '请添先加学校',
+              icon: 'loading'
+            })
+            setTimeout(() => {
+              wx.navigateTo({
+                url: '/pages/school_add/school_add'
+              })
+            }, 1000)
+            return
+          }
           var data = {
             school_id: res.data.data[0].id, //required
             sort_by: "appoint_start_at", //appoint_start_at || update_at
@@ -142,6 +177,17 @@ Page({
     })
   },
   changeSchool(e) {
+    if (this.data.schools == 0) {
+      wx.showToast({
+        title: '请添先加学校',
+        icon: 'loading'
+      })
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '/pages/school_add/school_add'
+        })
+      }, 1000)
+    }
     var self = this
     self.setData({
       page: 1,

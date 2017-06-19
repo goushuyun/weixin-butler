@@ -22,9 +22,13 @@ Page({
       data: {},
       success(res) {
         if (res.data.message == 'ok') {
-          self.setData({
-            schools: res.data.data
+          var schools = res.data.data.filter(el => {
+            return el.is_recyling == true
           })
+          self.setData({
+            schools
+          })
+          console.log(schools);
         }
       }
     })
@@ -45,7 +49,12 @@ Page({
           var data = res.data.data
           var qrcode_url = data.qrcode_url
           var summary = data.summary
-          var appoint_times = data.appoint_times.map(el => {
+          var appoint_times = data.appoint_times.filter(el => {
+            return el.is_work == true
+          })
+          console.log('appoint_times');
+          console.log(appoint_times);
+          appoint_times.map(el => {
             if (el.start_at < 10) {
               el.start_at = '0' + el.start_at
             } else {

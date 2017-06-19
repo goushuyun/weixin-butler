@@ -66,6 +66,7 @@
   line-height: 32px;
   font-size: 14px;
   margin-left: 3px;
+  width: 60px;
 }
 input{
   box-sizing: border-box;
