@@ -27,11 +27,15 @@
   </view>
 </view>
 
-<scroll-view class="body" scroll-y="true" bindscrolltolower="getMoreOrders" lower-threshold="100">
+<scroll-view class="body" scroll-y="true" bindscrolltolower="getMoreOrders">
   <view style="height: 10px; width: 100%; background-color: #EFF3F7;"></view>
+  <view wx:if="{{orders.length == 0}}" style="line-height: 30px; width: auto; font-size: 14px; text-align: center; margin: 15px 0;">
+    <view>还没有收书预约哦~</view>
+    <view>快把设置中的“收书码”分享给学生吧！</view>
+  </view>
   <view wx:for="{{orders}}" wx:for-item="order" class="recycle_item">
     <view class="avatar_area">
-      <image class="avatar" src="http://wx.qlogo.cn/mmopen/SMOyUAg32jk5cCwAVgl8PpWLdboXKBDnYVZrs1zJCTk4OPicticBfyxPAoNjvLC1P9dHyR0anPiakPKM1NxDcxsUA/0"></image>
+      <image class="avatar" src="{{order.avatar}}"></image>
     </view>
     <view class="detail_area">
       <view class="remark">{{order.remark ? order.remark : '该用户太匆忙，没写下任何备注信息...'}}</view>
@@ -65,24 +69,36 @@
           </view>
         </view>
       </view>
+      <view wx:if="{{state == 2}}" class="dot_item dot_item_remark">
+        <text style="color:#576B95;">搁置原因：</text><text>{{order.seller_remark ? order.seller_remark : '其他原因'}}</text>
+      </view>
     </view>
   </view>
 </scroll-view>
 <view wx:if="{{hold_on}}" class="hold_on">
   <form bindsubmit="holdOn">
     <view class="seller_remark">
-        <label>备注信息</label>
-        <textarea name="remark" maxlength="50" placeholder="输入备注内容（可不填）" value="{{seller_remark}}"/>
-        <view class="picker_area">
-          <label>选择时间：</label>
-          <picker mode="date" value="{{appoint_start_date}}" start="2017-01-01" end="2027-01-01" bindchange="bindDateChange">
-            <view class="picker">{{appoint_start_date}}</view>
-          </picker>
-          <picker mode="time" value="{{appoint_start_at}}" start="09:01" end="21:01" bindchange="bindTimeChange">
-            <view class="picker">{{appoint_start_at}}</view>
-          </picker>
-        </view>
+      <view class="picker_area">搁置原因</view>
+      <view class="picker_area">
+        <label>修改预约时间：</label>
+        <picker mode="date" value="{{appoint_start_date}}" start="2017-01-01" end="2027-01-01" bindchange="bindDateChange">
+          <view class="picker">{{appoint_start_date}}</view>
+        </picker>
+        <picker mode="time" value="{{appoint_start_at}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+          <view class="picker">{{appoint_start_at}}</view>
+        </picker>
+      </view>
+      <view class="picker_area">
+        <label>选择搁置原因：</label>
+        <picker name="seller_remark" bindchange="changeRemark" value="{{index}}" range="{{remarks}}">
+          <view class="picker">{{remarks[currentRemark]}}</view>
+        </picker>
+      </view>
+      <textarea wx:if="{{currentRemark == 3}}" name="seller_remark" maxlength="50" placeholder="输入搁置原因（可不填）" value="{{seller_remark}}"/>
+      <view class="button_area">
+        <button class="hold_on_btn" type="default" bindtap="cancelSubmit">取消</button>
         <button class="hold_on_btn" type="primary" formType="submit">确定</button>
+      </view>
     </view>
   </form>
 </view>

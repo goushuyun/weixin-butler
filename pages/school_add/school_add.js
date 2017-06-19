@@ -23,9 +23,14 @@ Page({
   onLoad() {
     var self = this
     wx.getLocation({
-      type: 'gcj02',
-      success: function(res) {
+      success(res) {
         self.setData({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude,
+            address: res.address,
+            name: res.name
+          },
           markers: [{
             latitude: res.latitude,
             longitude: res.longitude,

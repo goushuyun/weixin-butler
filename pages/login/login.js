@@ -117,6 +117,12 @@ Page({
             icon: 'loading'
           })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: '登录异常，请重试~',
+          icon: 'loading'
+        })
       }
     })
   },

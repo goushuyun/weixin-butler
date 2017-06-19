@@ -19,11 +19,19 @@ Page({
 
     hold_on: false,
     id: '',
-    appoint_start_date: '2017-06-17',
-    appoint_start_at: '18:55'
+    appoint_start_date: '',
+    appoint_start_at: '',
+
+    remarks: ['修改预约时间','未联系到用户','临时有事','其他原因'],
+    currentRemark: 0
   },
   onLoad() {
     this.getSchools()
+  },
+  changeRemark(e) {
+    this.setData({
+      currentRemark: e.detail.value
+    })
   },
   goToPage(e) {
     var currentPage = e.target.dataset.index
@@ -32,6 +40,8 @@ Page({
     // 每次切换tab 都要重置 sort_by
     var sort_by = 'appoint_start_at'
     var sort_by_name = '按预约时间排序'
+
+    var page = 1
 
     var data = {
       school_id: school_id, //required
@@ -43,6 +53,7 @@ Page({
     }
 
     this.setData({
+      page,
       currentPage,
       state,
       sort_by,
@@ -83,6 +94,7 @@ Page({
           state: state //1待处理  2 搁置中 3 已完成
         }
         self.setData({
+          page: 1,
           sort_by: sort_by,
           sort_by_name: itemList[res.tapIndex]
         })
@@ -132,6 +144,7 @@ Page({
   changeSchool(e) {
     var self = this
     self.setData({
+      page: 1,
       currentSchool: e.detail.value
     })
     var school_id = self.data.schools[e.detail.value].id
@@ -164,7 +177,7 @@ Page({
             return el
           })
           if (more) {
-            var orderList = self.data.orders.concat(orders)
+            orders = self.data.orders.concat(orders)
           }
           self.setData({
             orders
@@ -191,7 +204,6 @@ Page({
     this.getOrderList(data, true)
   },
   accomplish(e) {
-    console.log(e.currentTarget.dataset);
     var self = this
     var data = e.currentTarget.dataset
     wx.request({
@@ -237,16 +249,26 @@ Page({
     var id = data.id
     var index = data.index
     var hold_on = true
+    var data_time = this.data.orders[index].create_time.split(' ')
+    var appoint_start_date = data_time[0]
+    var appoint_start_at = data_time[1]
     this.setData({
       id,
       index,
-      hold_on
+      hold_on,
+      appoint_start_date,
+      appoint_start_at
     })
   },
   holdOn(e) {
     var self = this
     var id = self.data.id
-    var seller_remark = e.detail.value.seller_remark
+    var seller_remark = ''
+    if (self.data.currentRemark < self.data.remarks.length - 1) {
+      seller_remark = self.data.remarks[self.data.currentRemark]
+    } else {
+      seller_remark = e.detail.value.seller_remark
+    }
     var appoint_start_at = moment(self.data.appoint_start_date + ' ' + self.data.appoint_start_at).format('X')
     var appoint_end_at = appoint_start_at
     var state = 2
@@ -270,11 +292,16 @@ Page({
             title: '已完成',
             icon: 'success'
           })
-          self.setData({
-            hold_on: false
-          })
+          var orders = self.data.orders
+          if (self.data.state == 2) {
+            orders[self.data.index].create_time = self.data.appoint_start_date + ' ' + self.data.appoint_start_at
+            orders[self.data.index].seller_remark = seller_remark
+            self.setData({
+              orders: orders,
+              hold_on: false
+            })
+          }
           if (self.data.state == 1) {
-            var orders = self.data.orders
             orders.splice(self.data.index, 1)
             setTimeout(() => {
               self.setData({
@@ -284,6 +311,12 @@ Page({
           }
         }
       }
+    })
+  },
+  cancelSubmit() {
+    this.setData({
+      hold_on: false,
+      currentRemark: 0
     })
   }
 })
