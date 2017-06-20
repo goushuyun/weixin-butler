@@ -40,7 +40,7 @@ Page({
       }
     })
   },
-  goToSetting(e) {
+  enterStore(e) {
     var id = e.currentTarget.dataset.id
     var self = this
     wx.request({
@@ -55,7 +55,7 @@ Page({
         if (res.data.message == 'ok') {
           wx.setStorageSync('token', res.data.token)
           wx.setStorageSync('store_id', id)
-          wx.navigateTo({
+          wx.switchTab({
             url: '/pages/recycle_list/recycle_list'
           })
         }

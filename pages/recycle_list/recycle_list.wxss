@@ -1,3 +1,15 @@
+#pv_model {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+#pv_model image {
+  width: 100%;
+  height: 100%
+}
 .hold_on {
   position: fixed;
   top: 110px;
@@ -56,7 +68,6 @@
 }
 .body {
   top: 88px;
-  bottom: 60px;
 }
 .head {
   display: flex;
@@ -146,6 +157,9 @@
 .remark {
   margin-left: 5px;
   box-sizing: border-box;
+  font-size: 16px;
+  color: #000000;
+  line-height: 30px;
 }
 
 .img_item {
@@ -158,6 +172,12 @@
   display: flex;
   align-items: baseline;
   box-sizing: border-box;
+  font-size: 14px;
+  color: #555555;
+}
+.dot_item image {
+  position: relative;
+  top: 5px;
 }
 .dot_item_remark {
   width: auto;
@@ -166,6 +186,8 @@
   background-color: #F3F3F5;
   box-sizing: border-box;
   margin: 10px 5px 0 5px;
+  font-size: 14px;
+  color: #555555;
 }
 .btns {
   line-height: 30px;
@@ -193,39 +215,10 @@
   position: relative;
   bottom: 8px;
   left: 4px;
-  font-size: 14px;
+  font-size: 12px;
+  color: #888888;
 }
 .align-center {
   display: flex;
   align-items: center;
-}
-.footer {
-  background-color: #F8F8F8;
-  height: 60px;
-  padding-top: 6px;
-  justify-content: space-around;
-  border-top: 1px solid #F4F3F3;
-}
-.footer image {
-  height: 26px;
-  width: 26px;
-}
-.footer .text {
-  font-size: 12px;
-}
-.meets {
-  width: 50%;
-  text-align: center;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.setting {
-  width: 50%;
-  text-align: center;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

@@ -49,20 +49,4 @@
       </view>
     </view>
   </view>
-
 </scroll-view>
-
-<view class="footer">
-  <view class="meets" bindtap="goToMeets">
-    <view>
-      <image src="/images/home.png"></image>
-      <view class="text" style="color:#888888">首页</view>
-    </view>
-  </view>
-  <view class="setting">
-    <view>
-      <image src="/images/setting_selected.png"></image>
-      <view class="text" style="color:#1581D9">设置</view>
-    </view>
-  </view>
-</view>

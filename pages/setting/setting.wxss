@@ -69,36 +69,3 @@
   font-size: 14px;
   line-height: 30px;
 }
-.body {
-  bottom: 60px;
-}
-.footer {
-  background-color: #F8F8F8;
-  height: 60px;
-  padding-top: 6px;
-  justify-content: space-around;
-  border-top: 1px solid #F4F3F3;
-}
-.footer image {
-  height: 26px;
-  width: 26px;
-}
-.footer .text {
-  font-size: 12px;
-}
-.meets {
-  width: 50%;
-  text-align: center;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.setting {
-  width: 50%;
-  text-align: center;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}

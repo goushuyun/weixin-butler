@@ -14,5 +14,22 @@
     "navigationBarBackgroundColor": "#1581D9",
     "navigationBarTitleText": "购书云管家",
     "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+      "color": "#bfbfbf",
+      "selectedColor": "#1581D9",
+      "backgroundColor": "#FBFBFB",
+      "borderStyle": "white",
+      "list": [{
+          "pagePath": "pages/recycle_list/recycle_list",
+          "text": "首页",
+          "iconPath": "images/home.png",
+          "selectedIconPath": "images/home_selected.png"
+      }, {
+          "pagePath": "pages/setting/setting",
+          "text": "设置",
+          "iconPath": "images/setting.png",
+          "selectedIconPath": "images/setting_selected.png"
+      }]
   }
 }

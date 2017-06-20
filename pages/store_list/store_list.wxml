@@ -1,5 +1,5 @@
 <scroll-view class="body" scroll-y="true">
-  <view wx:for="{{stores}}" class="store" data-id="{{item.id}}" bindtap="goToSetting">
+  <view wx:for="{{stores}}" class="store" data-id="{{item.id}}" bindtap="enterStore">
     <view class="logo_area">
       <image class="logo" src="{{item.logo ? ('http://onv8eua8j.bkt.clouddn.com/' + item.logo) : 'http://image.goushuyun.cn/logo_share.png'}}"></image>
     </view>

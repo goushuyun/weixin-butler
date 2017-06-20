@@ -25,12 +25,23 @@ Page({
     remarks: ['修改预约时间','未联系到用户','临时有事','其他原因'],
     currentRemark: 0
   },
-  onShow() {
+  onLoad () {
     this.getSchools()
   },
   changeRemark(e) {
     this.setData({
       currentRemark: e.detail.value
+    })
+  },
+  showBigPic(e) {
+    var urls = []
+    this.data.orders[e.currentTarget.dataset.index].images.forEach(el => {
+      urls.push('http://images.goushuyun.cn/' + el.url)
+    })
+    var current_url = 'http://images.goushuyun.cn/' + e.currentTarget.dataset.url
+    wx.previewImage({
+        current: current_url, // 当前显示图片的http链接
+        urls: urls // 需要预览的图片http链接列表
     })
   },
   goToPage(e) {
@@ -125,15 +136,9 @@ Page({
       })
     }
   },
-  goToSetting() {
-    var id = this.data.id
-    wx.redirectTo({
-      url: '/pages/setting/setting'
-    })
-  },
   changeStore() {
-    wx.navigateBack({
-      delta: 1
+    wx.redirectTo({
+      url: '/pages/store_list/store_list'
     })
   },
   getSchools() {
@@ -342,19 +347,13 @@ Page({
           if (self.data.state == 2) {
             orders[self.data.index].create_time = self.data.appoint_start_date + ' ' + self.data.appoint_start_at
             orders[self.data.index].seller_remark = seller_remark
-            self.setData({
-              orders: orders,
-              hold_on: false
-            })
-          }
-          if (self.data.state == 1) {
+          } else if (self.data.state == 1) {
             orders.splice(self.data.index, 1)
-            setTimeout(() => {
-              self.setData({
-                orders
-              })
-            }, 1000)
           }
+          self.setData({
+            orders: orders,
+            hold_on: false
+          })
         }
       }
     })

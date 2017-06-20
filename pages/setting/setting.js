@@ -94,12 +94,6 @@ Page({
       }
     })
   },
-  goToMeets() {
-    var id = this.data.id
-    wx.redirectTo({
-      url: '/pages/recycle_list/recycle_list'
-    })
-  },
   copyUrl() {
     var qrcode_url = this.data.qrcode_url
     wx.setClipboardData({
