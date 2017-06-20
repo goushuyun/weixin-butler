@@ -4,7 +4,10 @@ Page({
     qrcode_url: '',
     schools: [],
     summary: '', //收书说明
-    appoint_times: []
+    appoint_times: [],
+    time_area: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
+      '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'
+    ]
   },
   onShow() {
     this.getSchools()
@@ -36,6 +39,7 @@ Page({
   // 店铺回收信息
   getStoreRecylingInfo() {
     var self = this
+    const time_area = self.data.time_area
     wx.request({
       url: app.base_url + '/v1/recyling/store_recyling_info',
       header: {
@@ -52,19 +56,9 @@ Page({
           var appoint_times = data.appoint_times.filter(el => {
             return el.is_work == true
           })
-          console.log('appoint_times');
-          console.log(appoint_times);
           appoint_times.map(el => {
-            if (el.start_at < 10) {
-              el.start_at = '0' + el.start_at
-            } else {
-              el.start_at = '' + el.start_at
-            }
-            if (el.end_at < 10) {
-              el.end_at = '0' + el.end_at
-            } else {
-              el.end_at = '' + el.end_at
-            }
+            el.start_at_str = time_area[el.start_at]
+            el.end_at_str = time_area[el.end_at]
             switch (el.week) {
               case 'mon':
                 el.week_ch = '星期一'

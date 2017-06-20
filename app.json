@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/time_list/time_list",
     "pages/recycle_list/recycle_list",
     "pages/store_list/store_list",
     "pages/setting/setting",
     "pages/summary/summary",
     "pages/school_list/school_list",
-    "pages/school_add/school_add",
-    "pages/time_list/time_list"
+    "pages/school_add/school_add"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -4,53 +4,69 @@ Page({
     id: '',
     appoint_times: [],
     checked_list: [],
+    pv_show: false,
     time_area: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
       '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'
-    ]
+    ],
+    start_at_area: [],
+    end_at_area: [],
+    start_at_str: '00:00',
+    end_at_str: '01:00',
+    item_index: 0
   },
   onLoad() {
     this.getStoreRecylingInfo()
-  },
-  bindStartAtChange(e) {
-    var item_index = e.currentTarget.dataset.index
-    var time_index = e.detail.value
-    var appoint_times = this.data.appoint_times
-    // if (time_index >= appoint_times[item_index].end_at) {
-    //   wx.showToast({
-    //     title: '请选择合理的时间范围',
-    //     icon: 'loading'
-    //   })
-    //   return
-    // }
-    appoint_times[item_index].start_at = time_index
-    if (time_index < 10) {
-      appoint_times[item_index].start_at_str = '0' + time_index
-    } else {
-      appoint_times[item_index].start_at_str = '' + time_index
-    }
+    const time_area = this.data.time_area
     this.setData({
-      appoint_times
+      start_at_area: time_area.slice(0, time_area.length - 1),
+      end_at_area: time_area.slice(1, time_area.length)
     })
   },
-  bindEndAtChange(e) {
+  openPicker(e) {
     var item_index = e.currentTarget.dataset.index
-    var time_index = e.detail.value
-    var appoint_times = this.data.appoint_times
-    // if (time_index <= appoint_times[item_index].start_at) {
-    //   wx.showToast({
-    //     title: '请选择合理的时间范围',
-    //     icon: 'loading'
-    //   })
-    //   return
-    // }
-    appoint_times[item_index].end_at = time_index
-    if (time_index < 10) {
-      appoint_times[item_index].end_at_str = '0' + time_index
-    } else {
-      appoint_times[item_index].end_at_str = '' + time_index
-    }
+    const time_area = this.data.time_area
     this.setData({
-      appoint_times
+      pv_show: true,
+      start_at_area: time_area.slice(0, time_area.length - 1),
+      end_at_area: time_area.slice(1, time_area.length),
+      start_at_str: '00:00',
+      end_at_str: '01:00',
+      item_index: item_index
+    })
+  },
+  closePicker() {
+    this.setData({
+      pv_show: false
+    })
+  },
+  setResult() {
+    const time_area = this.data.time_area
+    var appoint_times = this.data.appoint_times
+    var item_index = this.data.item_index
+    var start_at_str = this.data.start_at_str
+    var end_at_str = this.data.end_at_str
+
+    appoint_times[item_index].start_at_str = start_at_str
+    appoint_times[item_index].start_at = time_area.indexOf(start_at_str)
+    appoint_times[item_index].end_at_str = end_at_str
+    appoint_times[item_index].end_at = time_area.indexOf(end_at_str)
+    this.setData({
+      appoint_times: appoint_times,
+      pv_show: false
+    })
+  },
+  pickerChange(e) {
+    var start_index = e.detail.value[0]
+    var end_index = e.detail.value[1]
+    const time_area = this.data.time_area
+    var start_at_area = time_area
+    var end_at_area = time_area.slice(start_index + 1, time_area.length)
+    var start_at_str = start_at_area[start_index]
+    var end_at_str = end_at_area[end_index]
+    this.setData({
+      end_at_area,
+      start_at_str,
+      end_at_str
     })
   },
   checkboxChange(e) {
@@ -70,6 +86,7 @@ Page({
   },
   getStoreRecylingInfo() {
     var self = this
+    const time_area = self.data.time_area
     wx.request({
       url: app.base_url + '/v1/recyling/store_recyling_info',
       header: {
@@ -83,16 +100,8 @@ Page({
           var data = res.data.data
           var id = data.id
           var appoint_times = data.appoint_times.map(el => {
-            if (el.start_at < 10) {
-              el.start_at_str = '0' + el.start_at
-            } else {
-              el.start_at_str = '' + el.start_at
-            }
-            if (el.end_at < 10) {
-              el.end_at_str = '0' + el.end_at
-            } else {
-              el.end_at_str = '' + el.end_at
-            }
+            el.start_at_str = time_area[el.start_at]
+            el.end_at_str = time_area[el.end_at]
             switch (el.week) {
               case 'mon':
                 el.week_ch = '星期一'

@@ -1,3 +1,20 @@
+<view wx:if="{{pv_show}}" id="pv_model">
+  <image src="/images/model_bc.png" bindtap="closePicker"/>
+  <view class="pv_area">
+    <view class="pv_title">
+      <view bindtap="closePicker">取消</view>
+      <view bindtap="setResult">确定</view>
+    </view>
+    <picker-view indicator-style="height: 34px;" style="width: 100%; height: 240px;" value="{{value}}" bindchange="pickerChange">
+      <picker-view-column>
+        <view wx:for="{{start_at_area}}" class="pv_column">{{item}} 开始</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{end_at_area}}" class="pv_column">{{item}} 结束</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>
 <view class="body">
   <view class="area">
     <view class="item">
@@ -5,15 +22,8 @@
     </view>
     <checkbox-group bindchange="checkboxChange">
       <view class="item" wx:for="{{appoint_times}}">
-        <checkbox value="{{index}}" checked="{{item.is_work}}"/>
-        <view class="desp">{{item.week_ch}}</view>
-        <picker mode="selector" range="{{time_area}}" data-index="{{index}}" bindchange="bindStartAtChange">
-          <view class="picker">{{item.start_at_str}}：00</view>
-        </picker>
-        <text>-</text>
-        <picker mode="selector" range="{{time_area}}" data-index="{{index}}" bindchange="bindEndAtChange">
-          <view class="picker">{{item.end_at_str}}：00</view>
-        </picker>
+        <view class="desp"><checkbox value="{{index}}" checked="{{item.is_work}}"/>{{item.week_ch}}</view>
+        <view class="picker" data-index="{{index}}" bindtap="openPicker">{{item.start_at_str}} - {{item.end_at_str}}</view>
       </view>
     </checkbox-group>
   </view>

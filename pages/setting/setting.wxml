@@ -31,9 +31,7 @@
     <view wx:if="{{summary == ''}}" class="textarea">
       <view class="desp" style="color: #888888;">点击右侧"设置"修改收书说明</view>
     </view>
-    <view wx:else class="textarea">{{summary}}
-      <!-- <view disabled auto-height fixed value="{{summary}}"/> -->
-    </view>
+    <view wx:else class="textarea"><text>{{summary}}</text></view>
   </view>
   <!-- 收书时间 -->
   <view class="wraper">
@@ -47,7 +45,7 @@
     <view wx:else class="time_area">
       <view wx:for="{{appoint_times}}" class="item">
         <view class="desp">{{item.week_ch}}</view>
-        <view class="picker">{{item.start_at}}：00 - {{item.end_at}}：00</view>
+        <view class="picker">{{item.start_at_str}} - {{item.end_at_str}}</view>
       </view>
     </view>
   </view>
