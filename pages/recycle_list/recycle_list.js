@@ -153,8 +153,13 @@ Page({
       data: {},
       success(res) {
         if (res.data.message == 'ok') {
+          var schools = res.data.data
+          schools.unshift({
+            id: '',
+            name: '全部学校'
+          })
           self.setData({
-            schools: res.data.data
+            schools
           })
           if (res.data.data == 0) {
             wx.showToast({
