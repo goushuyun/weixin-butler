@@ -18,5 +18,5 @@ App({
       })
     }
   },
-  base_url: 'https://admin.goushuyun.cn'
+  base_url: 'https://admin.goushuyun.com'
 })
