@@ -229,7 +229,7 @@ Page({
         if (res.data.message == 'ok') {
           var orders = res.data.data.map(el => {
             el.time_ago = timeago(null, 'zh_CN').format(el.create_at * 1000)
-            el.create_time = moment.unix(el.appoint_start_at).format('YYYY-MM-DD hh:mm')
+            el.create_time = moment.unix(el.appoint_start_at).format('YYYY-MM-DD HH:mm')
             return el
           })
           if (more) {
