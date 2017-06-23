@@ -14,6 +14,9 @@ Page({
     this.getStoreRecylingInfo()
   },
   getSchools() {
+    wx.showLoading({
+      title: '加载中',
+    })
     var self = this
     wx.request({
       url: app.base_url + '/v1/school/store_schools',
@@ -31,8 +34,19 @@ Page({
           self.setData({
             schools
           })
-          console.log(schools);
+          wx.hideLoading()
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   },
@@ -90,7 +104,19 @@ Page({
             summary,
             appoint_times
           })
+          wx.hideLoading()
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   },

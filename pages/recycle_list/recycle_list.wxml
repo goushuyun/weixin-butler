@@ -14,12 +14,15 @@
           </picker>
         </view>
         <view class="picker_area">
-          <label>选择搁置原因：</label>
-          <picker name="seller_remark" bindchange="changeRemark" value="{{index}}" range="{{remarks}}">
-            <view class="picker">{{remarks[currentRemark]}}</view>
+          <label class="remark_picker_label">选择搁置原因：</label>
+          <picker class="remark_picker picker" name="seller_remark" bindchange="changeRemark" value="{{index}}" range="{{remarks}}">
+            <label>{{remarks[currentRemark]}}</label>
+            <view class="select_icon">
+              <image class="icon" src="/images/select.png"></image>
+            </view>
           </picker>
         </view>
-        <textarea wx:if="{{currentRemark == 3}}" name="seller_remark" maxlength="50" placeholder="输入搁置原因（可不填）" value="{{seller_remark}}"/>
+        <textarea wx:if="{{currentRemark == 2}}" name="seller_remark" maxlength="50" placeholder="输入搁置原因（可不填）" value="{{seller_remark}}"/>
         <view class="button_area">
           <button class="hold_on_btn" type="default" bindtap="cancelSubmit">取消</button>
           <button class="hold_on_btn" type="primary" formType="submit">确定</button>
@@ -48,7 +51,7 @@
 </view>
 
 <view class="panel">
-  <view class="select" bindtap="changeSortBy" style="border-right: 2px solid #F4F3F3;">
+  <view class="select" bindtap="changeSortBy" style="box-sizing: border-box;border-right: 2px solid #F4F3F3;">
     <text>{{sort_by_name}}</text>
     <view class="icon_area">
       <image class="icon" src="../../images/order.png"></image>
@@ -70,7 +73,7 @@
       <image class="avatar" src="{{order.avatar}}"></image>
     </view>
     <view class="detail_area">
-      <view class="remark">{{order.remark ? order.remark : '该用户太匆忙，没写下任何备注信息...'}}</view>
+      <view class="remark">{{order.remark}}</view>
       <view class="imgs_list">
         <block wx:for="{{order.images}}" wx:for-item="image" wx:for-index="idx">
           <image class="img_item" src="{{'http://images.goushuyun.cn/' + image.url}}" data-url="{{image.url}}" data-index="{{index}}" bindtap="showBigPic"></image>
@@ -90,12 +93,13 @@
       </view>
       <view class="btns">
         <view class="moment">{{order.time_ago}}</view>
-        <view class="align-center">
-          <view wx:if="{{state != 3}}" class="button" data-id="{{order.id}}" data-index="{{index}}" bindtap="preHoldOn">
+        <view wx:if="{{state == 3}}" class="update_moment">已完成：{{order.update_at}}</view>
+        <view wx:else class="align-center">
+          <view class="button" data-id="{{order.id}}" data-index="{{index}}" bindtap="preHoldOn">
             <image class="icon" src="../../images/re_delay.png"></image>
             <text class="btn">搁置</text>
           </view>
-          <view wx:if="{{state != 3}}" class="button" data-id="{{order.id}}" data-index="{{index}}" bindtap="accomplish">
+          <view class="button" data-id="{{order.id}}" data-index="{{index}}" bindtap="accomplish">
             <image class="icon" src="../../images/complete.png"></image>
             <text class="btn">完成</text>
           </view>

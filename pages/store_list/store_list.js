@@ -9,6 +9,9 @@ Page({
     this.getStores()
   },
   getStores() {
+    wx.showLoading({
+      title: '加载中',
+    })
     var self = this
     var today = moment().format('YYYY-MM-DD');
     // get seller's stores
@@ -36,11 +39,26 @@ Page({
           self.setData({
             stores
           })
+          wx.hideLoading()
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   },
   enterStore(e) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var id = e.currentTarget.dataset.id
     var self = this
     wx.request({
@@ -55,10 +73,22 @@ Page({
         if (res.data.message == 'ok') {
           wx.setStorageSync('token', res.data.token)
           wx.setStorageSync('store_id', id)
+          wx.hideLoading()
           wx.switchTab({
             url: '/pages/recycle_list/recycle_list'
           })
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   },
@@ -92,6 +122,9 @@ Page({
       })
       return
     }
+    wx.showLoading({
+      title: '加载中',
+    })
     var self = this
     wx.request({
       url: app.base_url + '/v1/store/add',

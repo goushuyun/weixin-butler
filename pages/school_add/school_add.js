@@ -122,6 +122,9 @@ Page({
     })
   },
   addSchool(e) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var location = this.data.location
     var value = e.detail.value
 
@@ -160,7 +163,19 @@ Page({
           wx.navigateBack({
             delta: 1
           })
+          wx.hideLoading()
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   }

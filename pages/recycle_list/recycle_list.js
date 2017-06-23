@@ -22,7 +22,7 @@ Page({
     appoint_start_date: '',
     appoint_start_at: '',
 
-    remarks: ['修改预约时间','未联系到用户','临时有事','其他原因'],
+    remarks: ['商家临时有事','未联系到用户','其他原因'],
     currentRemark: 0
   },
   onLoad () {
@@ -45,16 +45,20 @@ Page({
     })
   },
   goToPage(e) {
-    if (this.data.schools == 0) {
-      wx.showToast({
-        title: '请添先加学校',
-        icon: 'loading'
+    if (this.data.schools.length == 1) {
+      wx.showModal({
+        title: '提示',
+        content: '请添先加学校',
+        success: function(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/school_add/school_add'
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
       })
-      setTimeout(() => {
-        wx.navigateTo({
-          url: '/pages/school_add/school_add'
-        })
-      }, 1000)
     }
     var currentPage = e.target.dataset.index
     var state = currentPage + 1
@@ -68,7 +72,7 @@ Page({
     var data = {
       school_id: school_id, //required
       sort_by: sort_by, //appoint_start_at || update_at
-      sequence_by: "desc", //asc || desc
+      sequence_by: "", //asc || desc
       page: 1,
       size: 15,
       state: state //1待处理  2 搁置中 3 已完成
@@ -84,16 +88,20 @@ Page({
     this.getOrderList(data)
   },
   changeSortBy() {
-    if (this.data.schools == 0) {
-      wx.showToast({
-        title: '请添先加学校',
-        icon: 'loading'
+    if (this.data.schools.length == 1) {
+      wx.showModal({
+        title: '提示',
+        content: '请添先加学校',
+        success: function(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/school_add/school_add'
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
       })
-      setTimeout(() => {
-        wx.navigateTo({
-          url: '/pages/school_add/school_add'
-        })
-      }, 1000)
     } else {
       var self = this
       var state1 = ['按预约时间排序', '按发布时间排序']
@@ -121,7 +129,7 @@ Page({
           var data = {
             school_id: school_id, //required
             sort_by: sort_by, //appoint_start_at || update_at
-            sequence_by: "desc", //asc || desc
+            sequence_by: "", //asc || desc
             page: 1,
             size: 15,
             state: state //1待处理  2 搁置中 3 已完成
@@ -142,6 +150,9 @@ Page({
     })
   },
   getSchools() {
+    wx.showLoading({
+      title: '加载中',
+    })
     var self = this
     wx.request({
       url: app.base_url + '/v1/school/store_schools',
@@ -161,42 +172,62 @@ Page({
           self.setData({
             schools
           })
-          if (res.data.data == 0) {
-            wx.showToast({
-              title: '请添先加学校',
-              icon: 'loading'
+          wx.hideLoading()
+          if (schools.length == 1) {
+            wx.showModal({
+              title: '提示',
+              content: '请添先加学校',
+              success: function(res) {
+                if (res.confirm) {
+                  wx.navigateTo({
+                    url: '/pages/school_add/school_add'
+                  })
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
             })
-            setTimeout(() => {
-              wx.navigateTo({
-                url: '/pages/school_add/school_add'
-              })
-            }, 1000)
-            return
+          } else {
+            var data = {
+              school_id: res.data.data[0].id, //required
+              sort_by: "appoint_start_at", //appoint_start_at || update_at
+              sequence_by: "", //asc || desc
+              page: 1,
+              size: 15,
+              state: 1 //1待处理  2 搁置中 3 已完成
+            }
+            self.getOrderList(data)
           }
-          var data = {
-            school_id: res.data.data[0].id, //required
-            sort_by: "appoint_start_at", //appoint_start_at || update_at
-            sequence_by: "desc", //asc || desc
-            page: 1,
-            size: 15,
-            state: 1 //1待处理  2 搁置中 3 已完成
-          }
-          self.getOrderList(data)
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   },
   changeSchool(e) {
-    if (this.data.schools == 0) {
-      wx.showToast({
-        title: '请添先加学校',
-        icon: 'loading'
+    if (this.data.schools.length == 1) {
+      wx.showModal({
+        title: '提示',
+        content: '请添先加学校',
+        success: function(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/school_add/school_add'
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
       })
-      setTimeout(() => {
-        wx.navigateTo({
-          url: '/pages/school_add/school_add'
-        })
-      }, 1000)
     }
     var self = this
     self.setData({
@@ -208,7 +239,7 @@ Page({
     var data = {
       school_id: school_id, //required
       sort_by: self.data.sort_by, //appoint_start_at || update_at
-      sequence_by: "desc", //asc || desc
+      sequence_by: "", //asc || desc
       page: 1,
       size: 15,
       state: state //1待处理  2 搁置中 3 已完成
@@ -216,7 +247,15 @@ Page({
     self.getOrderList(data)
   },
   getOrderList(data, more) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var self = this
+    if (data.sort_by == 'appoint_start_at') {
+      data.sequence_by = 'asc'
+    } else {
+      data.sequence_by = 'desc'
+    }
     wx.request({
       url: app.base_url + '/v1/recyling/recyling_order_list',
       header: {
@@ -230,6 +269,7 @@ Page({
           var orders = res.data.data.map(el => {
             el.time_ago = timeago(null, 'zh_CN').format(el.create_at * 1000)
             el.create_time = moment.unix(el.appoint_start_at).format('YYYY-MM-DD HH:mm')
+            el.update_at = moment.unix(el.update_at).format('YYYY-MM-DD HH:mm')
             return el
           })
           if (more) {
@@ -238,7 +278,19 @@ Page({
           self.setData({
             orders
           })
+          wx.hideLoading()
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   },
@@ -252,7 +304,7 @@ Page({
     var data = {
       school_id: school_id, //required
       sort_by: this.data.sort_by, //appoint_start_at || update_at
-      sequence_by: "desc", //asc || desc
+      sequence_by: "", //asc || desc
       page: page,
       size: 15,
       state: state //1待处理  2 搁置中 3 已完成
@@ -260,6 +312,9 @@ Page({
     this.getOrderList(data, true)
   },
   accomplish(e) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var self = this
     var data = e.currentTarget.dataset
     wx.request({
@@ -285,8 +340,20 @@ Page({
             self.setData({
               orders
             })
+            wx.hideLoading()
           }, 1000)
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   },
@@ -317,6 +384,9 @@ Page({
     })
   },
   holdOn(e) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var self = this
     var id = self.data.id
     var seller_remark = ''
@@ -344,10 +414,6 @@ Page({
       },
       success(res) {
         if (res.data.message == 'ok') {
-          wx.showToast({
-            title: '已完成',
-            icon: 'success'
-          })
           var orders = self.data.orders
           if (self.data.state == 2) {
             orders[self.data.index].create_time = self.data.appoint_start_date + ' ' + self.data.appoint_start_at
@@ -359,7 +425,22 @@ Page({
             orders: orders,
             hold_on: false
           })
+          wx.showToast({
+            title: '已完成',
+            icon: 'success'
+          })
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   },

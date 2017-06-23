@@ -85,6 +85,9 @@ Page({
     })
   },
   getStoreRecylingInfo() {
+    wx.showLoading({
+      title: '加载中',
+    })
     var self = this
     const time_area = self.data.time_area
     wx.request({
@@ -139,7 +142,19 @@ Page({
             checked_list,
             appoint_times
           })
+          wx.hideLoading()
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   },
@@ -174,10 +189,22 @@ Page({
       },
       success(res) {
         if (res.data.message == 'ok') {
+          wx.hideLoading()
           wx.navigateBack({
             delta: 1
           })
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   }

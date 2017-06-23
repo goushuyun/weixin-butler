@@ -8,6 +8,9 @@ Page({
     this.getStoreRecylingSummary()
   },
   getStoreRecylingSummary() {
+    wx.showLoading({
+      title: '加载中',
+    })
     var self = this
     wx.request({
       url: app.base_url + '/v1/recyling/store_recyling_info',
@@ -26,7 +29,19 @@ Page({
             id,
             summary
           })
+          wx.hideLoading()
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   },
@@ -54,7 +69,19 @@ Page({
           wx.navigateBack({
             delta: 1
           })
+          wx.hideLoading()
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   }

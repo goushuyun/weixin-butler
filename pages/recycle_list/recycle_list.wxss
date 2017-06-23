@@ -44,6 +44,13 @@
   display: flex;
   align-items: center;
   height: 50px;
+  box-sizing: border-box;
+}
+.remark_picker_label {
+  flex-grow: 0;
+}
+.remark_picker {
+  flex-grow: 1;
 }
 .picker {
   margin: 0 10px;
@@ -82,6 +89,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.select_icon {
+  position: relative;
+  top: 3px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+  float: right;
 }
 .icon{
   width: 20px;
@@ -124,7 +139,7 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  border-bottom: 1px solid #F4F3F3;
+  /*border-bottom: 1px solid #F4F3F3;*/
 }
 
 .recycle_item {
@@ -217,6 +232,17 @@
   left: 4px;
   font-size: 12px;
   color: #888888;
+}
+.update_moment {
+  position: relative;
+  bottom: 8px;
+  right: 4px;
+  font-size: 12px;
+  border: 1px solid #FF4949;
+  border-radius: 4px;
+  color: #FF4949;
+  line-height: 20px;
+  padding: 0 5px;
 }
 .align-center {
   display: flex;

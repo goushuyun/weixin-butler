@@ -23,6 +23,9 @@ Page({
   onLoad(option) {
     var mobile = wx.getStorageSync('mobile')
     var password = wx.getStorageSync('password')
+    if (!mobile || !password) {
+      return
+    }
     this.setData({
       mobile,
       password
@@ -103,15 +106,15 @@ Page({
         password: formData.password
       },
       success(res) {
-        wx.hideLoading()
         if (res.data.message == 'ok') {
           wx.setStorageSync('token', res.data.data.token)
           wx.setStorageSync('mobile', formData.mobile)
           wx.setStorageSync('password', formData.password)
+          wx.hideLoading()
           wx.redirectTo({
             url: '/pages/store_list/store_list'
           })
-        } else if (res.data.message == 'notFound') {
+        } else {
           wx.showToast({
             title: '用户名或密码错误',
             icon: 'loading'
@@ -120,7 +123,7 @@ Page({
       },
       fail(res) {
         wx.showToast({
-          title: '登录异常，请重试~',
+          title: 'Error',
           icon: 'loading'
         })
       }
@@ -132,6 +135,9 @@ Page({
     if (self.checkSignData(formData)) {
       return
     }
+    wx.showLoading({
+      title: '注册中...',
+    })
     wx.request({
       url: app.base_url + '/v1/seller/register',
       method: 'POST',
@@ -158,6 +164,12 @@ Page({
             icon: 'loading'
           })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   },
