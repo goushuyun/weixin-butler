@@ -122,9 +122,6 @@ Page({
     })
   },
   addSchool(e) {
-    wx.showLoading({
-      title: '加载中',
-    })
     var location = this.data.location
     var value = e.detail.value
 
@@ -141,6 +138,9 @@ Page({
     if (!this.checkData(formData)) {
       return
     }
+    wx.showLoading({
+      title: '加载中',
+    })
     express_fee = parseInt(express_fee * 100)
     var data = {
       name,
