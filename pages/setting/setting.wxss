@@ -13,6 +13,7 @@
 }
 .header .title{
   width: 80px;
+  min-width: 80px;
   font-weight: bold;
   color: #333;
 }
@@ -29,6 +30,7 @@
 .header .active {
   text-align: right;
   width: 40px;
+  min-width: 40px;
   flex-grow: 0;
   color: #217AC0;
   font-size: 14px;
