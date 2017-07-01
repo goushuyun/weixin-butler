@@ -65,7 +65,7 @@ Page({
       success(res) {
         if (res.data.message == 'ok') {
           var data = res.data.data
-          var qrcode_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6d36779ce4dd3dfa&redirect_uri=https%3a%2f%2fapp.goushuyun.cn%2fone%2ftwo%2findex.html%23%2frecycling_order&response_type=code&scope=snsapi_base&state=' + wx.getStorageSync('store_id') + '&component_appid=wxb39264d954771192#wechat_redirect'
+          var qrcode_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6d36779ce4dd3dfa&redirect_uri=https%3a%2f%2fapp.goushuyun.com%2fone%2ftwo%2findex.html%23%2frecycling_order&response_type=code&scope=snsapi_base&state=' + wx.getStorageSync('store_id') + '&component_appid=wx1c2695469ae47724#wechat_redirect'
           var summary = data.summary
           var appoint_times = data.appoint_times.filter(el => {
             return el.is_work == true
