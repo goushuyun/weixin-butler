@@ -1,6 +1,21 @@
 <scroll-view class="body" scroll-y="true">
+    <!-- new recyling code -->
+    <view class="recycling_code">
+        <view class="store_info">
+            <image class="logo" src="http://wx.qlogo.cn/mmopen/yibogbWqZEhvAWBApaU8aIqLZhkBufavIIR8dRxvW64qcPy53YHlLHSCl7ylfCZZ0JbIBibkX5fwlqb1O3x2kCl8jVIsibmdRNw/0"></image>
+            <text class="store_name">第999家店铺</text>
+        </view>
+
+        <view class="view_code" bindtap="show_qrcode">
+            <image class="qrcode" src="../../images/QR_code.png"></image>
+            <text>收书二维码</text>
+        </view>
+    </view>
+
+    <image src="https://pan.baidu.com/share/qrcode?w=150&h=150&url=https://app.goushuyun.com/one/two/vendor/qrcode.htmlstoreid=170424000006"></image>
+
   <!-- 收书码 -->
-  <view class="wraper">
+  <!-- <view class="wraper">
     <view class="header" style="border-bottom: 0">
       <text class="title">收书链接</text>
       <view>
@@ -8,7 +23,8 @@
       </view>
       <text class="active" bindtap="copyUrl">复制</text>
     </view>
-  </view>
+  </view> -->
+
   <!-- 收书学校 -->
   <view class="wraper">
     <view class="header">
