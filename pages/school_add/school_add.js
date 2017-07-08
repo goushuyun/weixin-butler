@@ -138,6 +138,9 @@ Page({
     if (!this.checkData(formData)) {
       return
     }
+    wx.showLoading({
+      title: '加载中',
+    })
     express_fee = parseInt(express_fee * 100)
     var data = {
       name,
@@ -160,7 +163,19 @@ Page({
           wx.navigateBack({
             delta: 1
           })
+          wx.hideLoading()
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   }

@@ -13,6 +13,9 @@ Page({
     })
   },
   getSchools() {
+    wx.showLoading({
+      title: '加载中',
+    })
     var self = this
     wx.request({
       url: app.base_url + '/v1/school/store_schools',
@@ -27,7 +30,19 @@ Page({
           self.setData({
             schools: res.data.data
           })
+          wx.hideLoading()
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   },
@@ -46,6 +61,9 @@ Page({
     })
   },
   submit() {
+    wx.showLoading({
+      title: '加载中',
+    })
     var school_ids = this.data.school_ids
     if (school_ids.length == 0) {
       school_ids.push('0dda6e86-529c-11e7-b114-b2f933d5fe66')
@@ -65,7 +83,19 @@ Page({
           wx.navigateBack({
             delta: 1
           })
+          wx.hideLoading()
+        } else {
+          wx.showToast({
+            title: '请重试',
+            icon: 'loading'
+          })
         }
+      },
+      fail(res) {
+        wx.showToast({
+          title: 'Error',
+          icon: 'loading'
+        })
       }
     })
   }
