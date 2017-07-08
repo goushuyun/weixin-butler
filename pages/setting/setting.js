@@ -1,27 +1,34 @@
 var app = getApp()
 Page({
+    onLoad(){
+        console.log('onload')
+        // to get recycling_code
+        var self = this
+        wx.request({
+            url: app.base_url + '/v1/store/get_cecycling_qrcode',
+            header: {
+				'Authorization': 'Bearer ' + wx.getStorageSync('token')
+			},
+			method: 'POST',
+			data: {},
+            success(res){
+                console.log(res.data.data.recycling_qrcode);
+
+                self.setData({
+                    recycling_qrcode: res.data.data.recycling_qrcode
+                })
+
+            }
+        })
+    },
     // show qr_code
     show_qrcode(){
-        // https://chart.googleapis.com/chart?chl=https://jd.com&chs=40x40&cht=qr
-        // https://app.goushuyun.com/one/two/vendor/qrcode.html?storeid=123456
-
-        let store_id = wx.getStorageSync('store_id')
-        if(!store_id) return
-
-
-        // let qrcode_url = 'https://chart.googleapis.com/chart?chl=https://app.goushuyun.com/one/two/vendor/qrcode.html?storeid='+ store_id +'&chs=150x150&cht=qr'
-
-        let link = 'https://app.goushuyun.com/one/two/vendor/qrcode.htmlstoreid=' + store_id
-
-        let qrcode_url = 'https://pan.baidu.com/share/qrcode?w=150&h=150&url=' + encodeURI(link)
-        // let qrcode_url = 'https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' + encodeURI(link)
-
-        console.log(qrcode_url);
-
         // show qrcode image
+
+        console.log(this.data.recycling_qrcode);
+
         wx.previewImage({
-            current: qrcode_url,
-            urls: [qrcode_url, 'http://images.goushuyun.cn//9787010030180.jpg'],
+            urls: [this.data.recycling_qrcode],
             fail: function (res) {
                 // fail
                 console.log(JSON.stringify(res))
@@ -34,8 +41,8 @@ Page({
 
     },
 
-
 	data: {
+        recycling_qrcode: '',
 		qrcode_url: '',
 		schools: [],
 		summary: '', //收书说明

@@ -37,7 +37,7 @@
     color: #999999;
 }
 .view_code text{
-    padding-top: 4px;
+    padding-top: 2px;
 }
 
 

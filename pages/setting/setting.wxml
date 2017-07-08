@@ -12,8 +12,6 @@
         </view>
     </view>
 
-    <image src="https://pan.baidu.com/share/qrcode?w=150&h=150&url=https://app.goushuyun.com/one/two/vendor/qrcode.htmlstoreid=170424000006"></image>
-
   <!-- 收书码 -->
   <!-- <view class="wraper">
     <view class="header" style="border-bottom: 0">
